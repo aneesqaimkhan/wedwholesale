@@ -1,177 +1,64 @@
-# Medical Wholesale Management System
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-A multi-tenant wholesale management system built with Laravel and MySQL, specifically designed for the medical industry.
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## Features
+## About Laravel
 
-- **Multi-tenant Architecture**: Each customer operates from a separate subdomain with their own database
-- **Secure Authentication**: Login attempt limitations, password hashing, and account locking
-- **Tenant Management**: Global configuration and tenant-specific settings
-- **Dashboard**: Modern, responsive dashboard with module placeholders
-- **Database Isolation**: Complete data separation between tenants
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Architecture
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-### Database Structure
-- **Master Database**: Contains tenant information and global configuration
-- **Tenant Databases**: Separate database per tenant containing their operational data
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-### Multi-tenant Flow
-1. User accesses subdomain (e.g., `demo.medwholesale.local`)
-2. System detects tenant from subdomain
-3. System configures database connection for that tenant
-4. User authenticates against master database
-5. System redirects to tenant-specific dashboard
+## Learning Laravel
 
-## Installation
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-### Prerequisites
-- PHP 8.1 or higher
-- Composer
-- MySQL
-- WAMP (for local development)
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-### Setup Steps
+## Laravel Sponsors
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd medwholesale
-   ```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-2. **Install dependencies**
-   ```bash
-   composer install
-   ```
+### Premium Partners
 
-3. **Environment Configuration**
-   - Copy `.env.example` to `.env`
-   - Update database configuration for WAMP:
-     ```
-     DB_CONNECTION=mysql
-     DB_HOST=127.0.0.1
-     DB_PORT=3306
-     DB_DATABASE=medwholesale_master
-     DB_USERNAME=root
-     DB_PASSWORD=
-     ```
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-4. **Generate Application Key**
-   ```bash
-   php artisan key:generate
-   ```
+## Contributing
 
-5. **Create Master Database**
-   ```bash
-   # Create the master database in MySQL
-   CREATE DATABASE medwholesale_master;
-   ```
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-6. **Run Migrations and Seeders**
-   ```bash
-   php artisan migrate --database=master
-   php artisan db:seed --database=master
-   ```
+## Code of Conduct
 
-7. **Create Sample Tenant Databases**
-   ```bash
-   # Create tenant databases
-   CREATE DATABASE medwholesale_demo;
-   CREATE DATABASE medwholesale_test;
-   ```
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-8. **Configure Local Development**
-   - Add to your hosts file (`C:\Windows\System32\drivers\etc\hosts`):
-     ```
-     127.0.0.1 medwholesale.local
-     127.0.0.1 demo.medwholesale.local
-     127.0.0.1 test.medwholesale.local
-     ```
-   - Configure WAMP virtual hosts or use Laravel Valet
+## Security Vulnerabilities
 
-9. **Start the Application**
-   ```bash
-   php artisan serve --host=medwholesale.local --port=8000
-   ```
-
-## Usage
-
-### Sample Tenants
-The system comes with two sample tenants:
-
-1. **Demo Tenant**
-   - URL: `http://demo.medwholesale.local:8000`
-   - Email: `admin@demomedical.com`
-   - Password: `password123`
-
-2. **Test Tenant**
-   - URL: `http://test.medwholesale.local:8000`
-   - Email: `admin@testmedical.com`
-   - Password: `password123`
-
-### Login Process
-1. Navigate to a tenant subdomain
-2. Enter your email and password
-3. System authenticates against master database
-4. Upon success, you're redirected to the tenant dashboard
-
-## Security Features
-
-- **Login Attempt Limitation**: Maximum 3 failed attempts before account lockout
-- **Account Lockout**: 30-minute lockout after failed attempts
-- **Password Hashing**: Uses Laravel's bcrypt for secure password storage
-- **Rate Limiting**: IP-based rate limiting for login attempts
-- **Session Security**: Secure session handling with regeneration
-
-## Project Structure
-
-```
-app/
-├── Http/
-│   ├── Controllers/
-│   │   ├── Auth/
-│   │   │   └── TenantAuthController.php
-│   │   └── DashboardController.php
-│   └── Middleware/
-│       └── TenantDetection.php
-├── Models/
-│   ├── MasterUser.php
-│   └── Tenant.php
-database/
-├── migrations/
-│   ├── create_tenants_table.php
-│   └── create_master_users_table.php
-└── seeders/
-    └── MasterDatabaseSeeder.php
-resources/
-└── views/
-    ├── auth/
-    │   └── login.blade.php
-    ├── errors/
-    │   ├── tenant-not-found.blade.php
-    │   └── tenant-inactive.blade.php
-    └── dashboard.blade.php
-```
-
-## Next Steps
-
-The foundation is now set up for building the business modules:
-
-1. **Products Module**: Inventory management, categories, pricing
-2. **Customers Module**: Customer database, sales history
-3. **Suppliers Module**: Supplier management, purchase orders
-4. **Sales Module**: Sales orders, invoicing, payments
-5. **Purchase Module**: Purchase orders, receipts, vendor management
-6. **Reports Module**: Analytics, reporting, business intelligence
-
-## Development Notes
-
-- All tenant-specific data is stored in separate databases
-- Authentication is handled through the master database
-- Middleware automatically detects and configures tenant connections
-- Views are shared across tenants but data is isolated
-- Each tenant can have different settings and configurations
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-This project is proprietary software for medical wholesale management.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
