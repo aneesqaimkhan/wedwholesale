@@ -53,6 +53,11 @@ Route::domain('{subdomain}.localhost')->group(function () {
         ]);
     });
     
+    // Environment test route
+    Route::get('/env-test', function ($subdomain, \Illuminate\Http\Request $request) {
+        return view('tenant.environment-test');
+    });
+    
     // Authentication routes
     Route::get('/login', [App\Http\Controllers\Tenant\AuthController::class, 'showLogin'])->name('tenant.login');
     Route::post('/login', [App\Http\Controllers\Tenant\AuthController::class, 'login']);

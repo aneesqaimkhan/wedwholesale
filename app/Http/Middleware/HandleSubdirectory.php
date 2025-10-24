@@ -17,20 +17,35 @@ class HandleSubdirectory
     public function handle(Request $request, Closure $next)
     {
         $host = $request->getHost();
+        $environment = $this->detectEnvironment($host);
+        $config = config("environments.{$environment}");
         
-        // Set the correct APP_URL for subdomain requests with subdirectory
-        if (strpos($host, '.localhost') !== false) {
-            $subdomain = explode('.', $host)[0];
-            $baseUrl = "http://{$subdomain}.localhost/webwholesale";
-            config(['app.url' => $baseUrl]);
-            app('url')->forceRootUrl($baseUrl);
-        } elseif ($host === 'localhost' || $host === '127.0.0.1') {
-            // Handle main domain with subdirectory
-            $baseUrl = 'http://localhost/webwholesale';
+        if ($config) {
+            // Handle subdomain requests
+            if (strpos($host, '.') !== false && !in_array($host, ['localhost', '127.0.0.1'])) {
+                $subdomain = explode('.', $host)[0];
+                $baseUrl = str_replace('{subdomain}', $subdomain, $config['subdomain_url']);
+            } else {
+                // Handle main domain requests
+                $baseUrl = $config['app_url'];
+            }
+            
             config(['app.url' => $baseUrl]);
             app('url')->forceRootUrl($baseUrl);
         }
         
         return $next($request);
+    }
+    
+    /**
+     * Detect environment based on host
+     */
+    private function detectEnvironment($host)
+    {
+        if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
+            return 'local';
+        }
+        
+        return 'live';
     }
 }
