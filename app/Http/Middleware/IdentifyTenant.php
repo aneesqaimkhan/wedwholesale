@@ -29,20 +29,46 @@ class IdentifyTenant
         // Extract subdomain from host (e.g., "test.localhost" -> "test")
         $subdomain = explode('.', $host)[0];
         
-        // Connect to master database to find tenant
-        $tenant = Tenant::where('subdomain', $subdomain)
-                       ->where('is_active', true)
-                       ->first();
-        
-        if (!$tenant) {
-            abort(404, 'Tenant not found');
+        try {
+            // Connect to master database to find tenant
+            $tenant = Tenant::where('subdomain', $subdomain)
+                           ->where('is_active', true)
+                           ->first();
+            
+            // Log for debugging
+            \Log::info('Tenant lookup', [
+                'subdomain' => $subdomain,
+                'tenant_found' => $tenant ? true : false,
+                'tenant_name' => $tenant->name ?? null
+            ]);
+            
+            if (!$tenant) {
+                \Log::warning('Tenant not found', ['subdomain' => $subdomain]);
+                abort(404, 'Tenant not found');
+            }
+            
+            // Switch to tenant database
+            $this->switchToTenantDatabase($tenant);
+            
+            // Verify tenant database connection
+            $this->verifyTenantConnection();
+            
+            // Store current tenant in request for easy access
+            $request->attributes->set('current_tenant', $tenant);
+            
+        } catch (\Exception $e) {
+            \Log::error('Tenant identification failed', [
+                'subdomain' => $subdomain,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'error' => 'Database connection failed',
+                'message' => $e->getMessage(),
+                'subdomain' => $subdomain
+            ], 500);
         }
-        
-        // Switch to tenant database
-        $this->switchToTenantDatabase($tenant);
-        
-        // Store current tenant in request for easy access
-        $request->attributes->set('current_tenant', $tenant);
         
         return $next($request);
     }
@@ -65,5 +91,31 @@ class IdentifyTenant
         // Purge and reconnect
         DB::purge('tenant');
         DB::reconnect('tenant');
+        
+        \Log::info('Switched to tenant database', [
+            'tenant' => $tenant->name,
+            'database' => $tenant->database_name,
+            'host' => $tenant->database_host
+        ]);
+    }
+    
+    /**
+     * Verify tenant database connection
+     */
+    private function verifyTenantConnection()
+    {
+        try {
+            // Try to run a simple query to verify connection
+            DB::select('SELECT 1');
+            
+            \Log::info('Tenant database connection verified successfully');
+            
+        } catch (\Exception $e) {
+            \Log::error('Failed to verify tenant database connection', [
+                'error' => $e->getMessage()
+            ]);
+            
+            throw new \Exception('Failed to connect to tenant database: ' . $e->getMessage());
+        }
     }
 }

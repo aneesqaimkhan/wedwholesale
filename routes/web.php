@@ -71,6 +71,37 @@ Route::domain($domainPattern)->group(function () {
         ]);
     });
     
+    // Database connection test route
+    Route::get('/db-test', function (\Illuminate\Http\Request $request) {
+        $subdomain = $request->route('subdomain');
+        $tenant = $request->attributes->get('current_tenant');
+        
+        try {
+            // Test tenant database connection
+            $dbName = DB::select('SELECT DATABASE() as dbname')[0]->dbname;
+            
+            return response()->json([
+                'success' => true,
+                'subdomain' => $subdomain,
+                'tenant_name' => $tenant->name ?? 'Unknown',
+                'current_database' => $dbName,
+                'connection_status' => 'Connected',
+                'database_config' => [
+                    'database' => config('database.connections.tenant.database'),
+                    'host' => config('database.connections.tenant.host'),
+                    'port' => config('database.connections.tenant.port'),
+                    'username' => config('database.connections.tenant.username'),
+                ]
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage(),
+                'subdomain' => $subdomain
+            ], 500);
+        }
+    });
+    
     
     
     // Authentication routes

@@ -24,9 +24,9 @@ return [
     'live' => [
         // Update these values for your live server
         'domain' => 'gentecherp.com',                    // Your main domain
-        'subdomain_pattern' => $subdomain.'.gentecherp.com', // Subdomain pattern
+        'subdomain_pattern' => $subdomain.'', // Subdomain pattern
         'protocol' => 'https',                           // http or https
-        'subdirectory' => '/webwholesale',                // Your app subdirectory
+        'subdirectory' => '/',                // Your app subdirectory
     ],
     
     'local' => [
