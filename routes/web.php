@@ -25,6 +25,8 @@ $deploymentConfig = config('deployment');
 
 $domainPattern = $isLocal ? $deploymentConfig['local']['subdomain_pattern'] : $deploymentConfig['live']['subdomain_pattern'];
 
+
+// dd($domainPattern);
 // Tenant-specific routes (subdomain routes)
 Route::domain($domainPattern)->group(function () {
     // Public routes (no authentication required)

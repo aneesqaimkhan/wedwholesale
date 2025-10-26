@@ -1,5 +1,15 @@
 <?php
 
+
+$host = request()->getHost(); // shop.example.com
+$APP_ENV = env('APP_ENV');
+
+
+$mainDomain = $APP_ENV != "local" ? 'gentecherp.com' : 'localhost';
+
+
+$subdomain = str_replace('.' . $mainDomain, '', $host);
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -13,8 +23,8 @@ return [
     
     'live' => [
         // Update these values for your live server
-        'domain' => 'yourdomain.com',                    // Your main domain
-        'subdomain_pattern' => '{subdomain}.yourdomain.com', // Subdomain pattern
+        'domain' => 'gentecherp.com',                    // Your main domain
+        'subdomain_pattern' => $subdomain.'.gentecherp.com', // Subdomain pattern
         'protocol' => 'https',                           // http or https
         'subdirectory' => '/webwholesale',                // Your app subdirectory
     ],
@@ -22,7 +32,7 @@ return [
     'local' => [
         // Local development settings (usually don't need to change)
         'domain' => 'localhost',
-        'subdomain_pattern' => '{subdomain}.localhost',
+        'subdomain_pattern' => $subdomain.'.localhost',
         'protocol' => 'http',
         'subdirectory' => '/webwholesale',
     ],
