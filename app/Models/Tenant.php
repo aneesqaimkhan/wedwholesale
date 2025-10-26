@@ -9,6 +9,9 @@ class Tenant extends Model
 {
     use HasFactory;
     
+    // Specify connection to use 'master' database
+    protected $connection = 'master';
+    
     protected $fillable = [
         'name',
         'subdomain',
