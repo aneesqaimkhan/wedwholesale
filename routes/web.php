@@ -116,5 +116,27 @@ Route::domain($domainPattern)->group(function () {
     // Protected routes (authentication required)
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Tenant\AuthController::class, 'dashboard'])->name('tenant.dashboard');
+        
+        // Customer routes
+        Route::resource('customers', App\Http\Controllers\Tenant\CustomerController::class)->names([
+            'index' => 'customers.index',
+            'create' => 'customers.create',
+            'store' => 'customers.store',
+            'show' => 'customers.show',
+            'edit' => 'customers.edit',
+            'update' => 'customers.update',
+            'destroy' => 'customers.destroy',
+        ]);
+        
+        // Salesman routes
+        Route::resource('salesmen', App\Http\Controllers\Tenant\SalesmanController::class)->names([
+            'index' => 'salesmen.index',
+            'create' => 'salesmen.create',
+            'store' => 'salesmen.store',
+            'show' => 'salesmen.show',
+            'edit' => 'salesmen.edit',
+            'update' => 'salesmen.update',
+            'destroy' => 'salesmen.destroy',
+        ]);
     });
 });

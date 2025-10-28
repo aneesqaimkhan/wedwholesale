@@ -1764,3 +1764,1201 @@ Did you mean one of these?
 #32 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #33 {main}
 "} 
+[2025-10-26 18:52:12] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Class 'Request'...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#6 D:\\laragon\\www\\webwholesale\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 {main}
+"} 
+[2025-10-26 18:52:12] laravel.ERROR: Class 'Request' not found {"exception":"[object] (Error(code: 0): Class 'Request' not found at D:\\laragon\\www\\webwholesale\\config\\deployment.php:4)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 D:\\laragon\\www\\webwholesale\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 {main}
+"} 
+[2025-10-26 18:56:55] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [e...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 {main}
+"} 
+[2025-10-26 18:56:55] laravel.ERROR: Target class [env] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [env] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('env')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('env', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('env', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('env', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1419): Illuminate\\Foundation\\Application->make('env')
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(571): Illuminate\\Container\\Container->offsetGet('env')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(6): Illuminate\\Foundation\\Application->environment('production')
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#13 D:\\laragon\\www\\webwholesale\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#14 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class env does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('env')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('env')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('env', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('env', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('env', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(1419): Illuminate\\Foundation\\Application->make('env')
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(571): Illuminate\\Container\\Container->offsetGet('env')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(6): Illuminate\\Foundation\\Application->environment('production')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#14 D:\\laragon\\www\\webwholesale\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#15 {main}
+"} 
+[2025-10-26 19:48:52] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:48:52] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:48:57] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:48:57] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:53:19] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-26 19:53:19] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-26 19:53:19] local.INFO: Tenant database connection verified successfully  
+[2025-10-26 19:54:04] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:54:04] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:54:32] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:54:32] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:54:38] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:54:38] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:54:56] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:54:56] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-26 19:55:29] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-26 19:55:29] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 18:46:31] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 18:46:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 18:46:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 18:46:34] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 18:46:34] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 18:46:34] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:25:30] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:25:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:25:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:25:31] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:25:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:25:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:31] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:33] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:33] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:33] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:41] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:41] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:41] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:41] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:41] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:41] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:55] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:55] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:55] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:56] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:56] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:56] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:26:56] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:26:56] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:26:56] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:30:26] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:30:26] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:32:48] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:32:48] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:33:10] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:33:10] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:33:53] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:33:53] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:35:13] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:35:13] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:35:13] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:35:13] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-27 19:35:13] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-27 19:35:13] local.INFO: Tenant database connection verified successfully  
+[2025-10-27 19:35:26] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:35:26] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:38:13] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:38:13] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:38:13] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:38:13] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:38:13] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:38:13] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:38:14] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:38:14] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:38:14] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:38:14] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-27 19:45:51] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-27 19:45:51] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-28 18:16:47] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:16:48] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:16:48] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:16:59] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:16:59] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:16:59] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:12] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:12] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:12] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:16] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:16] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:16] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:30] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:30] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:30] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:31] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:38] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:38] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:38] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:41] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:41] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:41] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:43] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:43] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:43] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:45] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:45] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:45] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:49] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:49] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:49] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:17:51] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:17:51] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:17:51] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:18:12] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:18:12] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:18:12] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:18:42] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:18:42] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:18:42] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:18:47] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:18:47] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:18:47] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:00] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:00] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:00] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:02] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:02] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:02] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:17] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:17] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:17] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:25] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:25] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:25] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:30] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:30] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:30] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:37] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:37] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:37] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:47] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:47] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:47] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:53] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:53] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:53] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:19:57] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:19:57] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:19:57] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:30:50] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:30:50] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:30:50] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:31:02] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:31:02] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:31:02] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:33:53] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-28 18:33:53] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-28 18:34:02] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-28 18:34:02] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-28 18:34:08] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Target class [r...', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(366): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Illuminate\\Contracts\\Container\\BindingResolutionException))
+#6 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 {main}
+"} 
+[2025-10-28 18:34:08] laravel.ERROR: Target class [request] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [request] does not exist. at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:879)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#6 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#7 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#12 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class request does not exist at D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:877)
+[stacktrace]
+#0 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(877): ReflectionClass->__construct('request')
+#1 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build('request')
+#2 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(853): Illuminate\\Container\\Container->resolve('request', Array, true)
+#3 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('request', Array)
+#4 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(838): Illuminate\\Container\\Container->make('request', Array)
+#5 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(119): Illuminate\\Foundation\\Application->make('request', Array)
+#6 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(644): app('request')
+#7 D:\\laragon\\www\\webwholesale\\config\\deployment.php(4): request()
+#8 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require('D:\\\\laragon\\\\www\\\\...')
+#9 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#10 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 D:\\laragon\\www\\webwholesale\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 D:\\laragon\\www\\webwholesale\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 
+[2025-10-28 18:36:20] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:36:20] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:36:20] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:36:55] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:36:55] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:36:55] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:01] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:01] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:01] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:03] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:03] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:03] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:21] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:21] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:21] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:22] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:22] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:22] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:41] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:41] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:41] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:42] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:42] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:42] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:47] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:47] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:47] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:51] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:51] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:51] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:40:51] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:40:51] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:40:51] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:41:51] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:41:51] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:41:51] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:42:00] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:42:00] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:42:00] local.INFO: Tenant database connection verified successfully  
+[2025-10-28 18:42:00] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-28 18:42:00] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-28 18:42:00] local.INFO: Tenant database connection verified successfully  
