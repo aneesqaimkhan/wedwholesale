@@ -13,8 +13,8 @@
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h3 style="margin: 0;">Customer Information</h3>
         <div style="display: flex; gap: 10px;">
-            <a href="{{ route('customers.edit', ['subdomain' => request()->route('subdomain'), 'customer' => $customer->id]) }}" class="btn btn-warning">Edit</a>
-            <a href="{{ route('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Back to List</a>
+            <a href="{{ route_include_subdirectory('customers.edit', ['subdomain' => request()->route('subdomain'), 'customer' => $customer->id]) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ route_include_subdirectory('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Back to List</a>
         </div>
     </div>
 

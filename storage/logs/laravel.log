@@ -4253,3 +4253,30 @@ Did you mean one of these?
 [2025-10-29 15:14:58] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
 [2025-10-29 15:14:58] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
 [2025-10-29 15:14:58] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:15:57] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:15:57] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:15:58] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:16:41] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:16:41] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:16:41] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:04] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:04] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:04] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:06] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:06] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:06] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:08] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:08] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:08] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:16] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:16] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:16] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:27] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:27] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:27] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:31] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:31] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:31] local.INFO: Tenant database connection verified successfully  
+[2025-10-29 15:21:36] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-10-29 15:21:36] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-10-29 15:21:36] local.INFO: Tenant database connection verified successfully  

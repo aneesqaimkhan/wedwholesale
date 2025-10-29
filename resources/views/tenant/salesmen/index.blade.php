@@ -12,7 +12,7 @@
 <div class="card">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h3 style="margin: 0;">Salesman List</h3>
-        <a href="{{ route('salesmen.create', ['subdomain' => request()->route('subdomain')]) }}" class="btn">Add New Salesman</a>
+        <a href="{{ route_include_subdirectory('salesmen.create', ['subdomain' => request()->route('subdomain')]) }}" class="btn">Add New Salesman</a>
     </div>
 
     @if($salesmen->count() > 0)
@@ -36,9 +36,9 @@
                     <td>{{ Str::limit($salesman->address, 50) }}</td>
                     <td>{{ $salesman->created_at->format('M d, Y') }}</td>
                     <td>
-                        <a href="{{ route('salesmen.show', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" class="btn btn-success" style="padding: 5px 10px; font-size: 12px;">View</a>
-                        <a href="{{ route('salesmen.edit', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" class="btn btn-warning" style="padding: 5px 10px; font-size: 12px;">Edit</a>
-                        <form method="POST" action="{{ route('salesmen.destroy', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this salesman?')">
+                        <a href="{{ route_include_subdirectory('salesmen.show', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" class="btn btn-success" style="padding: 5px 10px; font-size: 12px;">View</a>
+                        <a href="{{ route_include_subdirectory('salesmen.edit', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" class="btn btn-warning" style="padding: 5px 10px; font-size: 12px;">Edit</a>
+                        <form method="POST" action="{{ route_include_subdirectory('salesmen.destroy', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this salesman?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;">Delete</button>
@@ -54,7 +54,7 @@
         </div>
     @else
         <div style="text-align: center; padding: 40px; color: #666;">
-            <p>No salesmen found. <a href="{{ route('salesmen.create', ['subdomain' => request()->route('subdomain')]) }}">Add your first salesman</a></p>
+            <p>No salesmen found. <a href="{{ route_include_subdirectory('salesmen.create', ['subdomain' => request()->route('subdomain')]) }}">Add your first salesman</a></p>
         </div>
     @endif
 </div>

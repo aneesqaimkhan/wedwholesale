@@ -10,7 +10,7 @@
 </div>
 
 <div class="card">
-    <form method="POST" action="{{ route('salesmen.update', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}">
+    <form method="POST" action="{{ route_include_subdirectory('salesmen.update', ['subdomain' => request()->route('subdomain'), 'salesman' => $salesman->id]) }}">
         @csrf
         @method('PUT')
         
@@ -40,7 +40,7 @@
 
         <div style="display: flex; gap: 10px;">
             <button type="submit" class="btn">Update Salesman</button>
-            <a href="{{ route('salesmen.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Cancel</a>
+            <a href="{{ route_include_subdirectory('salesmen.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Cancel</a>
         </div>
     </form>
 </div>

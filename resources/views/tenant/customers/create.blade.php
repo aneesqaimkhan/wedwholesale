@@ -10,7 +10,7 @@
 </div>
 
 <div class="card">
-    <form method="POST" action="{{ route('customers.store', ['subdomain' => request()->route('subdomain')]) }}">
+    <form method="POST" action="{{ route_include_subdirectory('customers.store', ['subdomain' => request()->route('subdomain')]) }}">
         @csrf
         
         <div class="form-group">
@@ -39,7 +39,7 @@
 
         <div style="display: flex; gap: 10px;">
             <button type="submit" class="btn">Create Customer</button>
-            <a href="{{ route('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Cancel</a>
+            <a href="{{ route_include_subdirectory('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Cancel</a>
         </div>
     </form>
 </div>
