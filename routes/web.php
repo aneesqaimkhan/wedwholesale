@@ -150,5 +150,18 @@ Route::domain($domainPattern)->group(function () {
             'update' => 'products.update',
             'destroy' => 'products.destroy',
         ]);
+
+        // Sales Invoices routes
+        Route::resource('sales-invoices', App\Http\Controllers\Tenant\SalesInvoiceController::class)->parameters([
+            'sales-invoices' => 'sales_invoice'
+        ])->names([
+            'index' => 'sales_invoices.index',
+            'create' => 'sales_invoices.create',
+            'store' => 'sales_invoices.store',
+            'show' => 'sales_invoices.show',
+            'edit' => 'sales_invoices.edit',
+            'update' => 'sales_invoices.update',
+            'destroy' => 'sales_invoices.destroy',
+        ]);
     });
 });

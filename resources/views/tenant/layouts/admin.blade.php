@@ -333,6 +333,11 @@
                         <i>📦</i> Products
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('sales_invoices.index') }}" class="nav-link {{ request()->is('sales-invoices*') ? 'active' : '' }}">
+                        <i>🧾</i> Sales Invoices
+                    </a>
+                </div>
             </nav>
         </div>
 
