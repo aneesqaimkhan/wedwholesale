@@ -38,8 +38,8 @@ class SalesmanController extends Controller
 
         Salesman::create($request->all());
 
-        return redirect()->route('salesmen.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Salesman created successfully.');
+        return redirect(route_include_subdirectory('salesmen.index'))
+        ->with('success', 'Salesman created successfully');
     }
 
     /**
@@ -71,8 +71,9 @@ class SalesmanController extends Controller
 
         $salesman->update($request->all());
 
-        return redirect()->route('salesmen.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Salesman updated successfully.');
+        return redirect(route_include_subdirectory('salesmen.index'))
+        ->with('success', 'Salesman updated successfully');
+
     }
 
     /**
@@ -82,7 +83,8 @@ class SalesmanController extends Controller
     {
         $salesman->delete();
 
-        return redirect()->route('salesmen.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Salesman deleted successfully.');
+        return redirect(route_include_subdirectory('salesmen.index'))
+        ->with('success', 'Salesman deleted successfully');
+
     }
 }

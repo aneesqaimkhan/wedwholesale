@@ -56,8 +56,8 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('products.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Product created successfully.');
+            return redirect(route_include_subdirectory('products.index'))
+            ->with('success', 'Product created successfully');
     }
 
     /**
@@ -107,8 +107,9 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
-        return redirect()->route('products.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Product updated successfully.');
+       
+            return redirect(route_include_subdirectory('products.index'))
+            ->with('success', 'Product updated successfully');
     }
 
     /**
@@ -118,8 +119,9 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Product deleted successfully.');
+        return redirect(route_include_subdirectory('products.index'))
+        ->with('success', 'Product deleted successfully');
+
     }
 }
 

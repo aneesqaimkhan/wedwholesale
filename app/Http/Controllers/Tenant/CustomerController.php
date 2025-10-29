@@ -40,8 +40,9 @@ class CustomerController extends Controller
 
         // dd($request->all() ,request()->route('subdomain'));
 
-        return redirect()->route('customers.index', ['subdomain' => 'demo'])
-            ->with('success', 'Customer created successfully.');
+        return redirect(route_include_subdirectory('customers.index'))
+        ->with('success', 'Customer created successfully');
+
     }
 
     /**
@@ -73,8 +74,8 @@ class CustomerController extends Controller
 
         $customer->update($request->all());
 
-        return redirect()->route('customers.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Customer updated successfully.');
+            return redirect(route_include_subdirectory('customers.index'))
+            ->with('success', 'Customer updated successfully');
     }
 
     /**
@@ -84,7 +85,8 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return redirect()->route('customers.index', ['subdomain' => request()->route('subdomain')])
-            ->with('success', 'Customer deleted successfully.');
+        return redirect(route_include_subdirectory('customers.index'))
+        ->with('success', 'Customer deleted successfully');
+
     }
 }

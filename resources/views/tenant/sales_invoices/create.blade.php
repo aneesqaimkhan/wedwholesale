@@ -4,57 +4,104 @@
 @section('page-title', 'Create Sales Invoice')
 
 @section('content')
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .form-grid.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+        .form-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6D2D9D;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6D2D9D;
+        }
+        @media (max-width: 1200px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
     <div class="card">
         <form method="POST" action="{{ route_include_subdirectory('sales_invoices.store') }}">
             @csrf
 
-            <div class="form-group">
-                <label>Invoice No</label>
-                <input type="number" name="invoice_no" class="form-control" value="{{ $nextInvoiceNo }}" required>
-            </div>
-            <div class="form-group">
-                <label>Invoice Date</label>
-                <input type="date" name="invoice_date" class="form-control" value="{{ date('Y-m-d') }}" required>
-            </div>
-
-            <div class="form-group">
-                <label>Customer</label>
-                <input list="customer_list" class="form-control" id="customer_input" placeholder="Code or Name">
-                <datalist id="customer_list">
-                    @foreach($customers as $c)
-                        <option value="{{ $c->code }} - {{ $c->name }}" data-code="{{ $c->code }}" data-name="{{ $c->name }}" data-address="{{ $c->address }}"></option>
-                    @endforeach
-                </datalist>
-            </div>
-            <div class="form-group">
-                <label>Customer Code</label>
-                <input type="text" name="customer_code" id="customer_code" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Customer Name</label>
-                <input type="text" name="customer_name" id="customer_name" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Address</label>
-                <input type="text" name="address" id="address" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Salesman</label>
-                <div style="display:flex; gap:10px;">
-                    <input type="text" name="salesman_code" class="form-control" placeholder="Code" style="width:150px;">
-                    <input type="text" name="salesman_name" class="form-control" placeholder="Name">
+            <!-- Invoice Information Section -->
+            <div class="form-section">
+                <div class="form-section-title">Invoice Information</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Invoice No</label>
+                        <input type="number" name="invoice_no" class="form-control" value="{{ $nextInvoiceNo }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Invoice Date</label>
+                        <input type="date" name="invoice_date" class="form-control" value="{{ date('Y-m-d') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Previous Balance</label>
+                        <input type="number" step="0.01" name="previous_balance" class="form-control" value="0">
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Remarks</label>
-                <input type="text" name="remarks" class="form-control">
+            <!-- Customer Information Section -->
+            <div class="form-section">
+                <div class="form-section-title">Customer Information</div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Search Customer</label>
+                        <input list="customer_list" class="form-control" id="customer_input" placeholder="Type customer name to search">
+                        <datalist id="customer_list">
+                            @foreach($customers as $c)
+                                <option value="{{ $c->name }}" data-id="{{ $c->id }}" data-name="{{ $c->name }}" data-mobile="{{ $c->mobile ?? '' }}" data-address="{{ $c->address ?? '' }}"></option>
+                            @endforeach
+                        </datalist>
+                        <input type="hidden" name="customer_code" id="customer_code">
+                        <input type="hidden" name="customer_name" id="customer_name">
+                        <input type="hidden" name="address" id="address">
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Previous Balance</label>
-                <input type="number" step="0.01" name="previous_balance" class="form-control" value="0">
+            <!-- Salesman & Additional Information Section -->
+            <div class="form-section">
+                <div class="form-section-title">Additional Information</div>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Search Salesman</label>
+                        <input list="salesman_list" class="form-control" id="salesman_input" placeholder="Type salesman name to search">
+                        <datalist id="salesman_list">
+                            @foreach($salesmen as $s)
+                                <option value="{{ $s->name }}" data-id="{{ $s->id }}" data-name="{{ $s->name }}" data-mobile="{{ $s->mobile ?? '' }}" data-address="{{ $s->address ?? '' }}"></option>
+                            @endforeach
+                        </datalist>
+                        <input type="hidden" name="salesman_code" id="salesman_code">
+                        <input type="hidden" name="salesman_name" id="salesman_name">
+                    </div>
+                    <div class="form-group">
+                        <label>Remarks</label>
+                        <input type="text" name="remarks" class="form-control" placeholder="Optional remarks">
+                    </div>
+                </div>
             </div>
 
             <div class="card" style="padding:15px;">
@@ -99,7 +146,7 @@
 
     <datalist id="product_list">
         @foreach($products as $p)
-            <option value="{{ $p->code }} - {{ $p->name }}" data-code="{{ $p->code }}" data-name="{{ $p->name }}" data-pack="{{ $p->pack }}" data-boxpcs="{{ $p->box_pcs }}" data-rate="{{ $p->sale_rate }}"></option>
+            <option value="{{ $p->product_code }} - {{ $p->product_name }}" data-code="{{ $p->product_code }}" data-name="{{ $p->product_name }}" data-pack="{{ $p->packing ?? '' }}" data-boxpcs="{{ $p->pcs_in_box ?? 0 }}" data-rate="{{ $p->r_price_pcs ?? 0 }}"></option>
         @endforeach
     </datalist>
 
@@ -133,9 +180,25 @@
                 const val = this.value;
                 for (let i = 0; i < customers.length; i++) {
                     if (customers[i].value === val) {
-                        codeEl.value = customers[i].dataset.code || '';
+                        codeEl.value = customers[i].dataset.id || '';
                         nameEl.value = customers[i].dataset.name || '';
                         addrEl.value = customers[i].dataset.address || '';
+                        break;
+                    }
+                }
+            });
+
+            // Salesman autocomplete wiring
+            const salesmen = document.getElementById('salesman_list')?.options || [];
+            const salesmanInput = document.getElementById('salesman_input');
+            const salesmanCodeEl = document.getElementById('salesman_code');
+            const salesmanNameEl = document.getElementById('salesman_name');
+            salesmanInput && salesmanInput.addEventListener('change', function() {
+                const val = this.value;
+                for (let i = 0; i < salesmen.length; i++) {
+                    if (salesmen[i].value === val) {
+                        salesmanCodeEl.value = salesmen[i].dataset.id || '';
+                        salesmanNameEl.value = salesmen[i].dataset.name || '';
                         break;
                     }
                 }

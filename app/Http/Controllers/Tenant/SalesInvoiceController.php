@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Salesman;
 use App\Models\SalesInvoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,10 +20,11 @@ class SalesInvoiceController extends Controller
 
     public function create()
     {
-        $customers = Customer::orderBy('name')->get([ 'name', 'address']);
-        $products = Product::orderBy('product_name')->get(['product_code', 'product_name', 'packing', 'pcs_in_box', 'sales_tax']);
+        $customers = Customer::orderBy('name')->get(['id', 'name', 'address', 'mobile']);
+        $salesmen = Salesman::orderBy('name')->get(['id', 'name', 'address', 'mobile']);
+        $products = Product::orderBy('product_name')->get(['product_code', 'product_name', 'packing', 'pcs_in_box', 'sales_tax', 'r_price_pcs']);
         $nextInvoiceNo = (int) (SalesInvoice::max('invoice_no') ?? 0) + 1;
-        return view('tenant.sales_invoices.create', compact('customers', 'products', 'nextInvoiceNo'));
+        return view('tenant.sales_invoices.create', compact('customers', 'salesmen', 'products', 'nextInvoiceNo'));
     }
 
     public function store(Request $request)
