@@ -328,6 +328,11 @@
                         <i>👨‍💼</i> Salesmen
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('products.index') }}" class="nav-link {{ request()->is('products*') ? 'active' : '' }}">
+                        <i>📦</i> Products
+                    </a>
+                </div>
             </nav>
         </div>
 

@@ -19,8 +19,9 @@ Route::get('/', function () {
 });
 
 
-// Get domain configuration based on environment
-$isLocal = str_contains(request()->getHost(), 'localhost') || str_contains(request()->getHost(), '127.0.0.1');
+// Get domain configuration based on environment (safe for CLI)
+$hostForEnvCheck = app()->runningInConsole() ? 'localhost' : request()->getHost();
+$isLocal = str_contains($hostForEnvCheck, 'localhost') || str_contains($hostForEnvCheck, '127.0.0.1');
 $deploymentConfig = config('deployment');
 
 $domainPattern = $isLocal ? $deploymentConfig['local']['subdomain_pattern'] : $deploymentConfig['live']['subdomain_pattern'];
@@ -137,6 +138,17 @@ Route::domain($domainPattern)->group(function () {
             'edit' => 'salesmen.edit',
             'update' => 'salesmen.update',
             'destroy' => 'salesmen.destroy',
+        ]);
+        
+        // Product routes
+        Route::resource('products', App\Http\Controllers\Tenant\ProductController::class)->names([
+            'index' => 'products.index',
+            'create' => 'products.create',
+            'store' => 'products.store',
+            'show' => 'products.show',
+            'edit' => 'products.edit',
+            'update' => 'products.update',
+            'destroy' => 'products.destroy',
         ]);
     });
 });

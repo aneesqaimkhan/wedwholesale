@@ -1,14 +1,14 @@
 <?php
 
 
-$host = request()->getHost(); // shop.example.com
+$host = app()->runningInConsole() ? 'localhost' : (request()->getHost() ?? 'localhost'); // safe for CLI
 $APP_ENV = env('APP_ENV');
 
 
 $mainDomain = $APP_ENV != "local" ? 'gentecherp.com' : 'localhost';
 
 
-$subdomain = str_replace('.' . $mainDomain, '', $host);
+$subdomain = app()->runningInConsole() ? 'test' : str_replace('.' . $mainDomain, '', $host);
 
 return [
     /*
