@@ -38,7 +38,9 @@ class CustomerController extends Controller
 
         Customer::create($request->all());
 
-        return redirect()->route('customers.index', ['subdomain' => request()->route('subdomain')])
+        // dd($request->all() ,request()->route('subdomain'));
+
+        return redirect()->route('customers.index', ['subdomain' => 'demo'])
             ->with('success', 'Customer created successfully.');
     }
 

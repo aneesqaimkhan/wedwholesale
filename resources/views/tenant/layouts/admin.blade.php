@@ -308,23 +308,23 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <a href="{{ route_include_subdirectory('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="sidebar-brand">
+                <a href="{{ route_include_subdirectory('tenant.dashboard') }}" class="sidebar-brand">
                     Admin Panel
                 </a>
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('tenant.dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i>🏠</i> Dashboard
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('customers.index') }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}">
                         <i>👥</i> Customers
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('salesmen.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('salesmen.index') }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
                         <i>👨‍💼</i> Salesmen
                     </a>
                 </div>
