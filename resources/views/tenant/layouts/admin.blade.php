@@ -308,23 +308,23 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <a href="{{ route('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="sidebar-brand">
+                <a href="{{ route_include_subdirectory('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="sidebar-brand">
                     Admin Panel
                 </a>
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-item">
-                    <a href="{{ route('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('tenant.dashboard', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                         <i>🏠</i> Dashboard
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('customers.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}">
                         <i>👥</i> Customers
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route('salesmen.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('salesmen.index', ['subdomain' => request()->route('subdomain')]) }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
                         <i>👨‍💼</i> Salesmen
                     </a>
                 </div>
@@ -338,7 +338,7 @@
                 <div class="navbar-title">@yield('page-title', 'Dashboard')</div>
                 <div class="user-menu">
                     <span class="user-info">Welcome, {{ auth()->user()->name }}</span>
-                    <form method="POST" action="{{ route('tenant.logout', ['subdomain' => request()->route('subdomain')]) }}" style="display: inline;">
+                    <form method="POST" action="{{ route_include_subdirectory('tenant.logout', ['subdomain' => request()->route('subdomain')]) }}" style="display: inline;">
                         @csrf
                         <button type="submit" class="btn-logout">Logout</button>
                     </form>
