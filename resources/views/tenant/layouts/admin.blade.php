@@ -39,6 +39,18 @@
             height: 100vh;
             overflow-y: auto;
             z-index: 1000;
+            transition: transform 0.3s, width 0.3s;
+        }
+
+        .sidebar.closed {
+            transform: translateX(-100%);
+        }
+
+        @media (min-width: 769px) {
+            .sidebar.closed {
+                transform: translateX(0);
+                width: 0;
+            }
         }
 
         .sidebar-header {
@@ -86,6 +98,13 @@
             flex: 1;
             margin-left: 250px;
             background: #f8f9fa;
+            transition: margin-left 0.3s;
+        }
+
+        @media (min-width: 769px) {
+            .sidebar.closed ~ .main-content {
+                margin-left: 0;
+            }
         }
 
         .top-navbar {
@@ -284,7 +303,7 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: block;
             background: #6D2D9D;
             color: white;
             border: none;
@@ -315,17 +334,13 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
             .sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s;
                 z-index: 1000;
             }
 
-            .sidebar.open {
+            .sidebar.open,
+            .sidebar.closed.open {
                 transform: translateX(0);
             }
 
@@ -345,6 +360,17 @@
 
             .content-area {
                 padding: 15px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .overlay {
+                display: none !important;
+            }
+
+            .sidebar.closed {
+                width: 0;
+                overflow: hidden;
             }
         }
     </style>
@@ -435,39 +461,75 @@
     </div>
 
     <script>
-        // Mobile menu toggle functionality
+        // Menu toggle functionality for both mobile and desktop
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
+        const isMobile = window.innerWidth <= 768;
 
         function openMenu() {
-            sidebar.classList.add('open');
-            overlay.classList.add('active');
+            if (isMobile) {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            } else {
+                sidebar.classList.remove('closed');
+            }
         }
 
         function closeMenu() {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
+            if (isMobile) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            } else {
+                sidebar.classList.add('closed');
+            }
         }
 
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function() {
+        function toggleMenu() {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
                 if (sidebar.classList.contains('open')) {
                     closeMenu();
                 } else {
                     openMenu();
                 }
-            });
+            } else {
+                if (sidebar.classList.contains('closed')) {
+                    sidebar.classList.remove('closed');
+                } else {
+                    sidebar.classList.add('closed');
+                }
+            }
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleMenu);
         }
 
         if (overlay) {
-            overlay.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', function() {
+                if (isMobile) {
+                    closeMenu();
+                }
+            });
         }
 
-        // Close menu when clicking on nav links
+        // Close menu when clicking on nav links (mobile only)
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function() {
+                if (isMobile) {
+                    closeMenu();
+                }
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) {
+                overlay.classList.remove('active');
+            }
         });
     </script>
 </body>
