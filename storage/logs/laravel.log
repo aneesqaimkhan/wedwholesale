@@ -6471,3 +6471,15 @@ Did you mean one of these?
 [2025-11-01 19:34:50] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
 [2025-11-01 19:34:50] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
 [2025-11-01 19:34:50] local.INFO: Tenant database connection verified successfully  
+[2025-11-01 20:17:28] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-11-01 20:17:28] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-11-01 20:17:29] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-11-01 20:17:29] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-11-01 20:17:29] local.INFO: Tenant database connection verified successfully  
+[2025-11-01 20:17:29] local.INFO: Tenant database connection verified successfully  
+[2025-11-01 20:18:06] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-11-01 20:18:06] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-11-01 20:18:06] local.INFO: Tenant database connection verified successfully  
+[2025-11-01 20:18:26] local.INFO: Tenant lookup {"subdomain":"demo","tenant_found":true,"tenant_name":"Demo Company"} 
+[2025-11-01 20:18:26] local.INFO: Switched to tenant database {"tenant":"Demo Company","database":"demo","host":"127.0.0.1"} 
+[2025-11-01 20:18:26] local.INFO: Tenant database connection verified successfully  

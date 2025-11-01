@@ -283,10 +283,46 @@
             margin-top: 15px;
         }
 
+        .menu-toggle {
+            display: none;
+            background: #6D2D9D;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: #5a2470;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s;
+                z-index: 1000;
             }
 
             .sidebar.open {
@@ -297,6 +333,16 @@
                 margin-left: 0;
             }
 
+            .top-navbar {
+                flex-wrap: wrap;
+            }
+
+            .user-menu {
+                width: 100%;
+                margin-top: 10px;
+                justify-content: space-between;
+            }
+
             .content-area {
                 padding: 15px;
             }
@@ -305,8 +351,11 @@
 </head>
 <body>
     <div class="admin-container">
+        <!-- Overlay for mobile -->
+        <div class="overlay" id="overlay"></div>
+
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="{{ route_include_subdirectory('tenant.dashboard') }}" class="sidebar-brand">
                     Admin Panel
@@ -345,6 +394,7 @@
         <div class="main-content">
             <!-- Top Navbar -->
             <div class="top-navbar">
+                <button class="menu-toggle" id="menuToggle">☰</button>
                 <div class="navbar-title">@yield('page-title', 'Dashboard')</div>
                 <div class="user-menu">
                     <span class="user-info">Welcome, {{ auth()->user()->name }}</span>
@@ -383,5 +433,42 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Mobile menu toggle functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function openMenu() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        function closeMenu() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                if (sidebar.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeMenu);
+        }
+
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    </script>
 </body>
 </html>
