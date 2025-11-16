@@ -163,18 +163,27 @@
             <!-- Invoice Information Header -->
             <div class="invoice-header">
                 <div class="invoice-header-left">
-                    <div class="invoice-header-label">Invoice No</div>
-                    <div class="invoice-header-value">{{ $nextInvoiceNo }}</div>
+                    <!-- Last Price Information Label (left side) -->
+                    <div id="last_price_info" style="margin-top: 0; padding: 10px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; display: none;">
+                        <div id="last_price_content" style="font-size: 12px; color: #666; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;"></div>
+                    </div>
                 </div>
-                <div class="invoice-header-center"></div>
                 <div class="invoice-header-right">
-                    <div class="invoice-header-label">Previous Balance</div>
-                    <div class="invoice-header-value" id="balance_display">0.00</div>
+                    <div style="display: inline-flex; gap: 24px; align-items: flex-end; justify-content: flex-end;">
+                        <div style="text-align: right;">
+                            <div class="invoice-header-label">Invoice No</div>
+                            <div class="invoice-header-value">{{ $nextInvoiceNo }}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="invoice-header-label">Previous Balance</div>
+                            <div class="invoice-header-value" id="balance_display">0.00</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Customer, Date, Remarks in one row -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 0px;">
                 <div class="form-group">
                     <label>Search Customer *</label>
                     <input list="customer_list" class="form-control" id="customer_input" placeholder="Type customer name to search" required>
@@ -249,11 +258,7 @@
             </div>
         </form>
     </div>
-    
-    <!-- Last Price Information Label -->
-    <div id="last_price_info" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; display: none;">
-        <div id="last_price_content" style="font-size: 12px; color: #666; display: flex; align-items: center; gap: 15px; flex-wrap: wrap;"></div>
-    </div>
+
 
     <script>
         // Function to fetch and display last price information
@@ -290,17 +295,17 @@
                     if (data.success && data.data) {
                         const sales = data.data.sales;
                         const purchase = data.data.purchase;
-                        let content = '<strong style="color: #6D2D9D; font-size: 13px;">Last Price Information:</strong>';
+                        let content = '';
                         
                         if (sales) {
                             content += `
-                                <span style="padding-left: 10px; border-left: 1px solid #dee2e6;"><strong>Sales:</strong> Rate: ${sales.rate.toFixed(2)} | Discount: ${sales.discount.toFixed(2)}% | Net: ${sales.net_amount.toFixed(2)} | Invoice #${sales.invoice_no} (${sales.invoice_date})</span>
+                                <span style="padding-left: 10px; border-left: 1px solid #dee2e6;"><strong style="color: #6D2D9D;">Sales:</strong> Rate: ${sales.rate.toFixed(2)} | Discount: ${sales.discount.toFixed(2)}% | Net: ${sales.net_amount.toFixed(2)} | Invoice #${sales.invoice_no} (${sales.invoice_date})</span>
                             `;
                         }
                         
                         if (purchase) {
                             content += `
-                                <span style="padding-left: 10px; border-left: 1px solid #dee2e6;"><strong>Purchase:</strong> Rate: ${purchase.rate.toFixed(2)} | Discount: ${purchase.discount.toFixed(2)}% | Net: ${purchase.net_amount.toFixed(2)} | Invoice #${purchase.invoice_no} (${purchase.invoice_date})</span>
+                                <span style="padding-left: 10px; border-left: 1px solid #dee2e6;"><strong style="color: #6D2D9D;">Purchase:</strong> Rate: ${purchase.rate.toFixed(2)} | Discount: ${purchase.discount.toFixed(2)}% | Net: ${purchase.net_amount.toFixed(2)} | Invoice #${purchase.invoice_no} (${purchase.invoice_date})</span>
                             `;
                         }
                         
