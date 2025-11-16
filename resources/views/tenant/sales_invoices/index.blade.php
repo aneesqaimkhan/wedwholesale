@@ -5,44 +5,41 @@
 
 @section('content')
     <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <div>
-                <h3 class="mb-0">All Invoices</h3>
-                <div class="page-subtitle">Recent first</div>
-            </div>
-            <a href="{{ route_include_subdirectory('sales_invoices.create') }}" class="btn">+ New Invoice</a>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin: 0; font-size: 16px; font-weight: 600;">All Invoices</h3>
+            <a href="{{ route_include_subdirectory('sales_invoices.create') }}" class="btn" style="padding: 6px 16px; font-size: 12px;">+ New Invoice</a>
         </div>
 
-        <table class="table">
+        <table class="table" style="font-size: 12px;">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Customer</th>
-                <th>Salesman</th>
-                <th>Remarks</th>
-                <th></th>
+                <th style="font-size: 11px; padding: 8px;">#</th>
+                <th style="font-size: 11px; padding: 8px;">Date</th>
+                <th style="font-size: 11px; padding: 8px;">Customer</th>
+                <th style="font-size: 11px; padding: 8px;">Salesman</th>
+                <th style="font-size: 11px; padding: 8px;">Remarks</th>
+                <th style="font-size: 11px; padding: 8px;"></th>
             </tr>
             </thead>
             <tbody>
             @forelse($invoices as $inv)
                 <tr>
-                    <td>{{ $inv->invoice_no }}</td>
-                    <td>{{ $inv->invoice_date }}</td>
-                    <td>{{ $inv->customer_code }} - {{ $inv->customer_name }}</td>
-                    <td>{{ $inv->salesman_code }} - {{ $inv->salesman_name }}</td>
-                    <td>{{ $inv->remarks }}</td>
-                    <td class="text-right">
-                        <a href="{{ route_include_subdirectory('sales_invoices.show', $inv) }}" class="btn btn-warning">View</a>
+                    <td style="padding: 8px;">{{ $inv->invoice_no }}</td>
+                    <td style="padding: 8px;">{{ $inv->invoice_date }}</td>
+                    <td style="padding: 8px;">{{ $inv->customer_code }} - {{ $inv->customer_name }}</td>
+                    <td style="padding: 8px;">{{ $inv->salesman_code }} - {{ $inv->salesman_name }}</td>
+                    <td style="padding: 8px;">{{ $inv->remarks }}</td>
+                    <td class="text-right" style="padding: 8px;">
+                        <a href="{{ route_include_subdirectory('sales_invoices.show', $inv) }}" class="btn btn-warning" style="padding: 4px 8px; font-size: 11px;">View</a>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="6" class="text-center">No invoices found.</td></tr>
+                <tr><td colspan="6" class="text-center" style="padding: 8px; font-size: 12px;">No invoices found.</td></tr>
             @endforelse
             </tbody>
         </table>
 
-        <div class="mt-3">{{ $invoices->links() }}</div>
+        <div style="margin-top: 12px; font-size: 12px;">{{ $invoices->links() }}</div>
     </div>
 @endsection
 

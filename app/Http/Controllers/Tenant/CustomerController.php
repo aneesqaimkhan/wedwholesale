@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::orderBy('created_at', 'desc')->paginate(10);
+        $customers = Customer::with('area')->orderBy('created_at', 'desc')->paginate(10);
         return view('tenant.customers.index', compact('customers'));
     }
 
@@ -22,7 +23,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('tenant.customers.create');
+        $areas = Area::orderBy('name')->get();
+        return view('tenant.customers.create', compact('areas'));
     }
 
     /**
@@ -34,6 +36,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:255',
             'mobile' => 'required|string|max:20',
             'address' => 'nullable|string',
+            'area_id' => 'nullable|exists:areas,id',
         ]);
 
         Customer::create($request->all());
@@ -50,6 +53,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        $customer->load('area');
         return view('tenant.customers.show', compact('customer'));
     }
 
@@ -58,7 +62,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('tenant.customers.edit', compact('customer'));
+        $areas = Area::orderBy('name')->get();
+        return view('tenant.customers.edit', compact('customer', 'areas'));
     }
 
     /**
@@ -70,6 +75,7 @@ class CustomerController extends Controller
             'name' => 'required|string|max:255',
             'mobile' => 'required|string|max:20',
             'address' => 'nullable|string',
+            'area_id' => 'nullable|exists:areas,id',
         ]);
 
         $customer->update($request->all());

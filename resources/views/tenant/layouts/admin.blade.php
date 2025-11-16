@@ -13,6 +13,82 @@
 
     <!-- Styles -->
     <style>
+        @media print {
+            @page {
+                margin: 0;
+                size: auto;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Hide browser default print headers/footers (URL and page numbers) */
+            body::before,
+            body::after,
+            body::first-line {
+                display: none !important;
+            }
+            
+            /* Hide all UI elements when printing */
+            .sidebar,
+            .top-navbar,
+            .menu-toggle,
+            .overlay,
+            .btn,
+            .btn-logout,
+            .user-menu,
+            .navbar-title,
+            .alert,
+            .page-header,
+            .page-title,
+            .page-subtitle {
+                display: none !important;
+            }
+            
+            .admin-container {
+                display: block !important;
+            }
+            
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                background: white !important;
+            }
+            
+            .content-area {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            .card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 10px !important;
+                margin: 0 !important;
+                page-break-inside: avoid;
+            }
+            
+            /* Prevent page breaks in tables */
+            table {
+                page-break-inside: avoid;
+            }
+            
+            /* Hide any print-specific elements */
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -89,6 +165,11 @@
             border-left-color: #fff;
         }
 
+        .nav-link[type="submit"]:hover {
+            background: rgba(220, 53, 69, 0.3) !important;
+            border-left-color: #dc3545 !important;
+        }
+
         .nav-link i {
             margin-right: 10px;
             width: 20px;
@@ -109,7 +190,7 @@
 
         .top-navbar {
             background: white;
-            padding: 15px 30px;
+            padding: 4px 12px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
@@ -117,7 +198,7 @@
         }
 
         .navbar-title {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
             color: #333;
         }
@@ -149,43 +230,43 @@
         }
 
         .content-area {
-            padding: 30px;
+            padding: 15px 20px;
         }
 
         .page-header {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
         .page-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 600;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .page-subtitle {
             color: #666;
-            font-size: 16px;
+            font-size: 13px;
         }
 
         .card {
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 6px 16px;
             background: #6D2D9D;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             border: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
             transition: all 0.3s;
         }
@@ -241,20 +322,23 @@
         .table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 10px;
+            font-size: 12px;
         }
 
         .table th,
         .table td {
-            padding: 12px;
+            padding: 8px;
             text-align: left;
             border-bottom: 1px solid #dee2e6;
+            font-size: 12px;
         }
 
         .table th {
             background: #f8f9fa;
             font-weight: 600;
             color: #333;
+            font-size: 11px;
         }
 
         .table tbody tr:hover {
@@ -262,7 +346,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
@@ -359,7 +443,7 @@
             }
 
             .content-area {
-                padding: 15px;
+                padding: 10px;
             }
         }
 
@@ -399,8 +483,18 @@
                     </a>
                 </div>
                 <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('suppliers.index') }}" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                        <i>🏭</i> Suppliers
+                    </a>
+                </div>
+                <div class="nav-item">
                     <a href="{{ route_include_subdirectory('salesmen.index') }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
                         <i>👨‍💼</i> Salesmen
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('areas.index') }}" class="nav-link {{ request()->is('areas*') ? 'active' : '' }}">
+                        <i>📍</i> Areas
                     </a>
                 </div>
                 <div class="nav-item">
@@ -413,6 +507,47 @@
                         <i>🧾</i> Sales Invoices
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('companies.index') }}" class="nav-link {{ request()->is('companies*') ? 'active' : '' }}">
+                        <i>🏢</i> Companies
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('purchases.index') }}" class="nav-link {{ request()->is('purchases*') ? 'active' : '' }}">
+                        <i>🛒</i> Purchases
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('receipt_payments.index') }}" class="nav-link {{ request()->is('receipt-payments*') ? 'active' : '' }}">
+                        <i>💳</i> Receipt Payments
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('expense_types.index') }}" class="nav-link {{ request()->is('expense-types*') ? 'active' : '' }}">
+                        <i>🏷️</i> Expense Types
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('expenses.index') }}" class="nav-link {{ request()->is('expenses*') ? 'active' : '' }}">
+                        <i>💰</i> Expenses
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('list_status_manual.index') }}" class="nav-link {{ request()->is('list-status-manual*') ? 'active' : '' }}">
+                        <i>📊</i> List Status Manual
+                    </a>
+                </div>
+                <div style="margin-top: 20px; padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div style="color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 10px;">
+                        Welcome, {{ auth()->user()->name }}
+                    </div>
+                    <form method="POST" action="{{ route_include_subdirectory('tenant.logout', ['subdomain' => request()->route('subdomain')]) }}" style="display: inline; width: 100%;">
+                        @csrf
+                        <button type="submit" class="nav-link" style="width: 100%; text-align: left; background: rgba(220, 53, 69, 0.2); border-left-color: #dc3545;">
+                            <i>🚪</i> Logout
+                        </button>
+                    </form>
+                </div>
             </nav>
         </div>
 
@@ -422,13 +557,6 @@
             <div class="top-navbar">
                 <button class="menu-toggle" id="menuToggle">☰</button>
                 <div class="navbar-title">@yield('page-title', 'Dashboard')</div>
-                <div class="user-menu">
-                    <span class="user-info">Welcome, {{ auth()->user()->name }}</span>
-                    <form method="POST" action="{{ route_include_subdirectory('tenant.logout', ['subdomain' => request()->route('subdomain')]) }}" style="display: inline;">
-                        @csrf
-                        <button type="submit" class="btn-logout">Logout</button>
-                    </form>
-                </div>
             </div>
 
             <!-- Content Area -->

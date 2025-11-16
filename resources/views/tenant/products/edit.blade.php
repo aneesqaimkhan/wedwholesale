@@ -4,188 +4,137 @@
 @section('page-title', 'Edit Product')
 
 @section('content')
-<div class="page-header">
-    <h1 class="page-title">Edit Product</h1>
-    <p class="page-subtitle">Update product information</p>
-</div>
+<style>
+    .compact-form {
+        font-size: 13px;
+    }
+    .compact-form .form-group {
+        margin-bottom: 8px;
+    }
+    .compact-form .form-group label {
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 2px;
+    }
+    .compact-form .form-control {
+        padding: 5px 8px;
+        font-size: 12px;
+        height: 30px;
+    }
+    .compact-form .section-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6D2D9D;
+        margin: 8px 0 5px 0;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #e1e5e9;
+    }
+    .compact-form .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+    }
+    .compact-form .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+    .compact-form .error {
+        font-size: 11px;
+        margin-top: 3px;
+    }
+</style>
 
-<div class="card">
+<div class="card compact-form">
     <form method="POST" action="{{ route_include_subdirectory('products.update', ['subdomain' => request()->route('subdomain'), 'product' => $product->product_id]) }}">
         @csrf
         @method('PUT')
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="grid-3">
             <div class="form-group">
                 <label for="product_code">Product Code *</label>
-                <input type="text" id="product_code" name="product_code" class="form-control" value="{{ old('product_code', $product->product_code) }}" required>
+                <input type="text" id="product_code" name="product_code" class="form-control" value="{{ old('product_code', $product->product_code) }}" placeholder="Enter code" required>
                 @error('product_code')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="product_name">Product Name *</label>
-                <input type="text" id="product_name" name="product_name" class="form-control" value="{{ old('product_name', $product->product_name) }}" required>
+                <input type="text" id="product_name" name="product_name" class="form-control" value="{{ old('product_name', $product->product_name) }}" placeholder="Enter name" required>
                 @error('product_name')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="packing">Packing</label>
+                <input type="text" id="packing" name="packing" class="form-control" value="{{ old('packing', $product->packing) }}" placeholder="Enter packing">
+                @error('packing')
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px;">
-            <div class="form-group">
-                <label for="pcs_in_box">Pcs in Box</label>
-                <input type="number" id="pcs_in_box" name="pcs_in_box" class="form-control" value="{{ old('pcs_in_box', $product->pcs_in_box) }}" min="0">
-                @error('pcs_in_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="supplier_id">Supplier ID</label>
-                <input type="number" id="supplier_id" name="supplier_id" class="form-control" value="{{ old('supplier_id', $product->supplier_id) }}">
-                @error('supplier_id')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="bonus_type">Bonus Type</label>
-                <select id="bonus_type" name="bonus_type" class="form-control">
-                    <option value="D" {{ old('bonus_type', $product->bonus_type) == 'D' ? 'selected' : '' }}>Deduct (D)</option>
-                    <option value="A" {{ old('bonus_type', $product->bonus_type) == 'A' ? 'selected' : '' }}>Add (A)</option>
-                </select>
-                @error('bonus_type')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="expire_date">Expire Date</label>
-                <input type="date" id="expire_date" name="expire_date" class="form-control" value="{{ old('expire_date', $product->expire_date ? $product->expire_date->format('Y-m-d') : '') }}">
-                @error('expire_date')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="packing">Packing</label>
-            <input type="text" id="packing" name="packing" class="form-control" value="{{ old('packing', $product->packing) }}">
-            @error('packing')
-                <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <h3 style="margin: 30px 0 20px 0; color: #333;">Opening Quantities</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="section-title">Quantities & Prices</div>
+        <div class="grid-4">
             <div class="form-group">
                 <label for="opening_qty_box">Opening Qty (Box)</label>
-                <input type="number" id="opening_qty_box" name="opening_qty_box" class="form-control" value="{{ old('opening_qty_box', $product->opening_qty_box) }}" min="0">
+                <input type="number" id="opening_qty_box" name="opening_qty_box" class="form-control" value="{{ old('opening_qty_box', $product->opening_qty_box ?: '') }}" min="0" placeholder="0">
                 @error('opening_qty_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="opening_qty_pcs">Opening Qty (Pcs)</label>
-                <input type="number" id="opening_qty_pcs" name="opening_qty_pcs" class="form-control" value="{{ old('opening_qty_pcs', $product->opening_qty_pcs) }}" min="0">
-                @error('opening_qty_pcs')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <h3 style="margin: 30px 0 20px 0; color: #333;">Minimum Stock</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
                 <label for="minimum_stock_box">Minimum Stock (Box)</label>
-                <input type="number" id="minimum_stock_box" name="minimum_stock_box" class="form-control" value="{{ old('minimum_stock_box', $product->minimum_stock_box) }}" min="0">
+                <input type="number" id="minimum_stock_box" name="minimum_stock_box" class="form-control" value="{{ old('minimum_stock_box', $product->minimum_stock_box ?: '') }}" min="0" placeholder="0">
                 @error('minimum_stock_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="minimum_stock_pcs">Minimum Stock (Pcs)</label>
-                <input type="number" id="minimum_stock_pcs" name="minimum_stock_pcs" class="form-control" value="{{ old('minimum_stock_pcs', $product->minimum_stock_pcs) }}" min="0">
-                @error('minimum_stock_pcs')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <h3 style="margin: 30px 0 20px 0; color: #333;">Normal Price (N)</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="form-group">
-                <label for="n_price_box">Price per Box</label>
-                <input type="number" id="n_price_box" name="n_price_box" class="form-control" value="{{ old('n_price_box', $product->n_price_box) }}" step="0.01" min="0">
+                <label for="n_price_box">Normal Price (Box)</label>
+                <input type="number" id="n_price_box" name="n_price_box" class="form-control" value="{{ old('n_price_box', $product->n_price_box ?: '') }}" step="0.01" min="0" placeholder="0.00">
                 @error('n_price_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="n_price_pcs">Price per Pcs</label>
-                <input type="number" id="n_price_pcs" name="n_price_pcs" class="form-control" value="{{ old('n_price_pcs', $product->n_price_pcs) }}" step="0.01" min="0">
-                @error('n_price_pcs')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <h3 style="margin: 30px 0 20px 0; color: #333;">Trade Price (T)</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="form-group">
-                <label for="t_price_box">Price per Box</label>
-                <input type="number" id="t_price_box" name="t_price_box" class="form-control" value="{{ old('t_price_box', $product->t_price_box) }}" step="0.01" min="0">
+                <label for="t_price_box">Trade Price (Box)</label>
+                <input type="number" id="t_price_box" name="t_price_box" class="form-control" value="{{ old('t_price_box', $product->t_price_box ?: '') }}" step="0.01" min="0" placeholder="0.00">
                 @error('t_price_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="t_price_pcs">Price per Pcs</label>
-                <input type="number" id="t_price_pcs" name="t_price_pcs" class="form-control" value="{{ old('t_price_pcs', $product->t_price_pcs) }}" step="0.01" min="0">
-                @error('t_price_pcs')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
         </div>
 
-        <h3 style="margin: 30px 0 20px 0; color: #333;">Retail Price (R)</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="grid-4">
             <div class="form-group">
-                <label for="r_price_box">Price per Box</label>
-                <input type="number" id="r_price_box" name="r_price_box" class="form-control" value="{{ old('r_price_box', $product->r_price_box) }}" step="0.01" min="0">
+                <label for="r_price_box">Retail Price (Box)</label>
+                <input type="number" id="r_price_box" name="r_price_box" class="form-control" value="{{ old('r_price_box', $product->r_price_box ?: '') }}" step="0.01" min="0" placeholder="0.00">
                 @error('r_price_box')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="r_price_pcs">Price per Pcs</label>
-                <input type="number" id="r_price_pcs" name="r_price_pcs" class="form-control" value="{{ old('r_price_pcs', $product->r_price_pcs) }}" step="0.01" min="0">
-                @error('r_price_pcs')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-            <div class="form-group">
-                <label for="sales_tax">Sales Tax (%)</label>
-                <input type="number" id="sales_tax" name="sales_tax" class="form-control" value="{{ old('sales_tax', $product->sales_tax) }}" step="0.01" min="0" max="100">
+                <label for="sales_tax">Sales Tax</label>
+                <input type="number" id="sales_tax" name="sales_tax" class="form-control" value="{{ old('sales_tax', $product->sales_tax ?: '') }}" step="0.01" min="0" max="100" placeholder="0.00">
                 @error('sales_tax')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="rate_in_percent">Rate in Percent (%)</label>
-                <input type="number" id="rate_in_percent" name="rate_in_percent" class="form-control" value="{{ old('rate_in_percent', $product->rate_in_percent) }}" step="0.01" min="0" max="100">
+                <input type="number" id="rate_in_percent" name="rate_in_percent" class="form-control" value="{{ old('rate_in_percent', $product->rate_in_percent ?: '') }}" step="0.01" min="0" max="100" placeholder="0.00">
                 @error('rate_in_percent')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -197,24 +146,52 @@
                     <option value="R" {{ old('default_rate_type', $product->default_rate_type) == 'R' ? 'selected' : '' }}>Retail (R)</option>
                 </select>
                 @error('default_rate_type')
-                    <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                    <div class="error" style="color: #dc3545;">{{ $message }}</div>
                 @enderror
             </div>
         </div>
 
         <div class="form-group">
-            <label for="company_id">Company ID</label>
-            <input type="number" id="company_id" name="company_id" class="form-control" value="{{ old('company_id', $product->company_id) }}">
+            <label for="company_id">Company</label>
+            <select id="company_id" name="company_id" class="form-control">
+                <option value="">Select Company</option>
+                @foreach($companies as $company)
+                    <option value="{{ $company->id }}" {{ old('company_id', $product->company_id) == $company->id ? 'selected' : '' }}>
+                        {{ $company->name }}
+                    </option>
+                @endforeach
+            </select>
             @error('company_id')
-                <div style="color: #dc3545; font-size: 14px; margin-top: 5px;">{{ $message }}</div>
+                <div class="error" style="color: #dc3545;">{{ $message }}</div>
             @enderror
         </div>
 
-        <div style="display: flex; gap: 10px; margin-top: 30px;">
-            <button type="submit" class="btn">Update Product</button>
-            <a href="{{ route_include_subdirectory('products.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d;">Cancel</a>
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <button type="submit" class="btn" style="padding: 6px 16px; font-size: 12px;">Update Product</button>
+            <a href="{{ route_include_subdirectory('products.index', ['subdomain' => request()->route('subdomain')]) }}" class="btn" style="background: #6c757d; padding: 6px 16px; font-size: 12px;">Cancel</a>
         </div>
     </form>
 </div>
-@endsection
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const retailPriceInput = document.getElementById('r_price_box');
+    const tradePriceInput = document.getElementById('t_price_box');
+    
+    if (retailPriceInput && tradePriceInput) {
+        retailPriceInput.addEventListener('input', function() {
+            const retailPrice = parseFloat(this.value);
+            
+            if (!isNaN(retailPrice) && retailPrice > 0) {
+                // Calculate Trade Price as 15% decrease from Retail Price
+                const tradePrice = retailPrice * 0.85;
+                tradePriceInput.value = tradePrice.toFixed(2);
+            } else if (this.value === '' || this.value === null) {
+                // Clear trade price if retail price is cleared
+                tradePriceInput.value = '';
+            }
+        });
+    }
+});
+</script>
+@endsection

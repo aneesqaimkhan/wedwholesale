@@ -24,7 +24,7 @@ class SalesInvoiceController extends Controller
     {
         $customers = Customer::orderBy('name')->get(['id', 'name', 'address', 'mobile']);
         $salesmen = Salesman::orderBy('name')->get(['id', 'name', 'address', 'mobile']);
-        $products = Product::orderBy('product_name')->get(['product_code', 'product_name', 'packing', 'pcs_in_box', 'sales_tax', 'r_price_pcs']);
+        $products = Product::orderBy('product_name')->get(['product_id', 'product_code', 'product_name', 'packing', 'pcs_in_box', 'sales_tax', 'n_price_box', 't_price_box', 'r_price_box', 'default_rate_type']);
         $nextInvoiceNo = (int) (SalesInvoice::max('invoice_no') ?? 0) + 1;
         return view('tenant.sales_invoices.create', compact('customers', 'salesmen', 'products', 'nextInvoiceNo'));
     }
@@ -55,44 +55,43 @@ class SalesInvoiceController extends Controller
             'items.*.net_amount' => 'nullable|numeric|min:0',
         ]);
 
-        $validator->after(function ($v) use ($request) {
-            $items = $request->input('items', []);
-            $validItemCount = 0;
+            $validator->after(function ($v) use ($request) {
+                $items = $request->input('items', []);
+                $validItemCount = 0;
 
-            foreach ($items as $index => $item) {
-                $box = (int) ($item['box'] ?? 0);
-                $pcs = (int) ($item['pcs'] ?? 0);
-                $net = (float) ($item['net_amount'] ?? 0);
-                $rate = (float) ($item['rate'] ?? 0);
-                $bpb = (float) ($item['b_per_box'] ?? 0);
-                $stx = (float) ($item['stx'] ?? 0);
-                $disc = (float) ($item['discount'] ?? 0);
-                $pack = trim((string) ($item['pack'] ?? ''));
+                foreach ($items as $index => $item) {
+                    $box = (int) ($item['box'] ?? 0);
+                    $net = (float) ($item['net_amount'] ?? 0);
+                    $rate = (float) ($item['rate'] ?? 0);
+                    $bpb = (float) ($item['b_per_box'] ?? 0);
+                    $stx = (float) ($item['stx'] ?? 0);
+                    $disc = (float) ($item['discount'] ?? 0);
+                    $pack = trim((string) ($item['pack'] ?? ''));
 
-                $hasQty = ($box > 0 || $pcs > 0 || $net > 0);
-                $anyFieldUsed = $hasQty || $rate > 0 || $bpb > 0 || $stx > 0 || $disc > 0 || $pack !== '';
-                $hasProductCode = !empty($item['product_code']);
-                $hasProductName = !empty($item['product_name']);
-                $hasProduct = $hasProductCode && $hasProductName;
+                    $hasQty = ($box > 0 || $net > 0);
+                    $anyFieldUsed = $hasQty || $rate > 0 || $bpb > 0 || $stx > 0 || $disc > 0 || $pack !== '';
+                    $hasProductCode = !empty($item['product_code']);
+                    $hasProductName = !empty($item['product_name']);
+                    $hasProduct = $hasProductCode && $hasProductName;
 
-                if ($anyFieldUsed && !$hasProduct) {
-                    if (!$hasProductCode) {
-                        $v->errors()->add("items.$index.product_code", 'Product code is required for item #' . ($index + 1));
+                    if ($anyFieldUsed && !$hasProduct) {
+                        if (!$hasProductCode) {
+                            $v->errors()->add("items.$index.product_code", 'Product code is required for item #' . ($index + 1));
+                        }
+                        if (!$hasProductName) {
+                            $v->errors()->add("items.$index.product_name", 'Product name is required for item #' . ($index + 1));
+                        }
                     }
-                    if (!$hasProductName) {
-                        $v->errors()->add("items.$index.product_name", 'Product name is required for item #' . ($index + 1));
+
+                    if ($hasQty && $hasProduct) {
+                        $validItemCount++;
                     }
                 }
 
-                if ($hasQty && $hasProduct) {
-                    $validItemCount++;
+                if ($validItemCount === 0) {
+                    $v->errors()->add('items', 'At least one item with quantity or amount is required.');
                 }
-            }
-
-            if ($validItemCount === 0) {
-                $v->errors()->add('items', 'At least one item with quantity or amount is required.');
-            }
-        });
+            });
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -114,7 +113,7 @@ class SalesInvoiceController extends Controller
             ]);
 
             foreach ($validated['items'] as $item) {
-                if (($item['box'] ?? 0) == 0 && ($item['pcs'] ?? 0) == 0) {
+                if (($item['box'] ?? 0) == 0) {
                     continue;
                 }
                 $invoice->items()->create([
@@ -122,8 +121,9 @@ class SalesInvoiceController extends Controller
                     'product_name' => $item['product_name'] ?? null,
                     'pack' => $item['pack'] ?? null,
                     'box' => (int) ($item['box'] ?? 0),
-                    'pcs' => (int) ($item['pcs'] ?? 0),
+                    'pcs' => 0,
                     'rate' => (float) ($item['rate'] ?? 0),
+                    'rate_type' => $item['selected_rate_type'] ?? 'N',
                     'b_per_box' => (float) ($item['b_per_box'] ?? 0),
                     'stx' => (float) ($item['stx'] ?? 0),
                     'discount' => (float) ($item['discount'] ?? 0),
@@ -168,44 +168,43 @@ class SalesInvoiceController extends Controller
             'items.*.net_amount' => 'nullable|numeric|min:0',
         ]);
 
-        $validator->after(function ($v) use ($request) {
-            $items = $request->input('items', []);
-            $validItemCount = 0;
+            $validator->after(function ($v) use ($request) {
+                $items = $request->input('items', []);
+                $validItemCount = 0;
 
-            foreach ($items as $index => $item) {
-                $box = (int) ($item['box'] ?? 0);
-                $pcs = (int) ($item['pcs'] ?? 0);
-                $net = (float) ($item['net_amount'] ?? 0);
-                $rate = (float) ($item['rate'] ?? 0);
-                $bpb = (float) ($item['b_per_box'] ?? 0);
-                $stx = (float) ($item['stx'] ?? 0);
-                $disc = (float) ($item['discount'] ?? 0);
-                $pack = trim((string) ($item['pack'] ?? ''));
+                foreach ($items as $index => $item) {
+                    $box = (int) ($item['box'] ?? 0);
+                    $net = (float) ($item['net_amount'] ?? 0);
+                    $rate = (float) ($item['rate'] ?? 0);
+                    $bpb = (float) ($item['b_per_box'] ?? 0);
+                    $stx = (float) ($item['stx'] ?? 0);
+                    $disc = (float) ($item['discount'] ?? 0);
+                    $pack = trim((string) ($item['pack'] ?? ''));
 
-                $hasQty = ($box > 0 || $pcs > 0 || $net > 0);
-                $anyFieldUsed = $hasQty || $rate > 0 || $bpb > 0 || $stx > 0 || $disc > 0 || $pack !== '';
-                $hasProductCode = !empty($item['product_code']);
-                $hasProductName = !empty($item['product_name']);
-                $hasProduct = $hasProductCode && $hasProductName;
+                    $hasQty = ($box > 0 || $net > 0);
+                    $anyFieldUsed = $hasQty || $rate > 0 || $bpb > 0 || $stx > 0 || $disc > 0 || $pack !== '';
+                    $hasProductCode = !empty($item['product_code']);
+                    $hasProductName = !empty($item['product_name']);
+                    $hasProduct = $hasProductCode && $hasProductName;
 
-                if ($anyFieldUsed && !$hasProduct) {
-                    if (!$hasProductCode) {
-                        $v->errors()->add("items.$index.product_code", 'Product code is required for item #' . ($index + 1));
+                    if ($anyFieldUsed && !$hasProduct) {
+                        if (!$hasProductCode) {
+                            $v->errors()->add("items.$index.product_code", 'Product code is required for item #' . ($index + 1));
+                        }
+                        if (!$hasProductName) {
+                            $v->errors()->add("items.$index.product_name", 'Product name is required for item #' . ($index + 1));
+                        }
                     }
-                    if (!$hasProductName) {
-                        $v->errors()->add("items.$index.product_name", 'Product name is required for item #' . ($index + 1));
+
+                    if ($hasQty && $hasProduct) {
+                        $validItemCount++;
                     }
                 }
 
-                if ($hasQty && $hasProduct) {
-                    $validItemCount++;
+                if ($validItemCount === 0) {
+                    $v->errors()->add('items', 'At least one item with quantity or amount is required.');
                 }
-            }
-
-            if ($validItemCount === 0) {
-                $v->errors()->add('items', 'At least one item with quantity or amount is required.');
-            }
-        });
+            });
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -230,7 +229,7 @@ class SalesInvoiceController extends Controller
             $sales_invoice->items()->delete();
 
             foreach ($validated['items'] as $item) {
-                if (($item['box'] ?? 0) == 0 && ($item['pcs'] ?? 0) == 0 && ($item['net_amount'] ?? 0) == 0) {
+                if (($item['box'] ?? 0) == 0 && ($item['net_amount'] ?? 0) == 0) {
                     continue;
                 }
                 $sales_invoice->items()->create([
@@ -238,8 +237,9 @@ class SalesInvoiceController extends Controller
                     'product_name' => $item['product_name'] ?? null,
                     'pack' => $item['pack'] ?? null,
                     'box' => (int) ($item['box'] ?? 0),
-                    'pcs' => (int) ($item['pcs'] ?? 0),
+                    'pcs' => 0,
                     'rate' => (float) ($item['rate'] ?? 0),
+                    'rate_type' => $item['selected_rate_type'] ?? 'N',
                     'b_per_box' => (float) ($item['b_per_box'] ?? 0),
                     'stx' => (float) ($item['stx'] ?? 0),
                     'discount' => (float) ($item['discount'] ?? 0),
@@ -250,6 +250,87 @@ class SalesInvoiceController extends Controller
 
         return redirect(route_include_subdirectory('sales_invoices.show', $sales_invoice))
             ->with('success', 'Invoice updated successfully');
+    }
+
+    /**
+     * Get last price and discount for a customer-product combination
+     */
+    public function getLastPrice(Request $request)
+    {
+        $customerCode = $request->input('customer_code');
+        $productCode = $request->input('product_code');
+
+        if (!$customerCode || !$productCode) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Customer code and product code are required'
+            ], 400);
+        }
+
+        $result = [
+            'sales' => null,
+            'purchase' => null
+        ];
+
+        // Find the last sales invoice item for this customer-product combination
+        $lastSalesItem = DB::connection('tenant')->table('sales_invoice_items as items')
+            ->join('sales_invoices as invoices', 'items.invoice_id', '=', 'invoices.id')
+            ->where('invoices.customer_code', $customerCode)
+            ->where('items.product_code', $productCode)
+            ->orderBy('invoices.created_at', 'desc')
+            ->orderBy('invoices.id', 'desc')
+            ->select('items.rate', 'items.discount', 'items.net_amount', 'invoices.invoice_date', 'invoices.invoice_no')
+            ->first();
+
+        if ($lastSalesItem) {
+            $result['sales'] = [
+                'rate' => (float) $lastSalesItem->rate,
+                'discount' => (float) $lastSalesItem->discount,
+                'net_amount' => (float) $lastSalesItem->net_amount,
+                'invoice_date' => $lastSalesItem->invoice_date,
+                'invoice_no' => $lastSalesItem->invoice_no,
+            ];
+        }
+
+        // Find the last purchase item for this product
+        $lastPurchaseItem = DB::connection('tenant')->table('purchase_items as items')
+            ->join('purchases', 'items.purchase_id', '=', 'purchases.id')
+            ->where('items.product_code', $productCode)
+            ->whereNotNull('items.product_code')
+            ->where('items.product_code', '!=', '')
+            ->orderBy('purchases.id', 'desc')
+            ->orderBy('purchases.invoice_date', 'desc')
+            ->select('items.rate', 'items.discount', 'items.net_amount', 'purchases.invoice_date', 'purchases.invoice_no')
+            ->first();
+        
+        // Log for debugging
+        \Log::info('Purchase query', [
+            'product_code' => $productCode,
+            'found' => $lastPurchaseItem ? true : false,
+            'count' => DB::connection('tenant')->table('purchase_items')->where('product_code', $productCode)->count()
+        ]);
+
+        if ($lastPurchaseItem) {
+            $result['purchase'] = [
+                'rate' => (float) $lastPurchaseItem->rate,
+                'discount' => (float) $lastPurchaseItem->discount,
+                'net_amount' => (float) $lastPurchaseItem->net_amount,
+                'invoice_date' => $lastPurchaseItem->invoice_date,
+                'invoice_no' => $lastPurchaseItem->invoice_no,
+            ];
+        }
+
+        if ($result['sales'] || $result['purchase']) {
+            return response()->json([
+                'success' => true,
+                'data' => $result
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'No previous invoice found for this customer-product combination'
+        ]);
     }
 }
 

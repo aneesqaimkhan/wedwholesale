@@ -20,6 +20,7 @@ class SalesInvoiceItem extends Model
         'box',
         'pcs',
         'rate',
+        'rate_type',
         'b_per_box',
         'stx',
         'discount',

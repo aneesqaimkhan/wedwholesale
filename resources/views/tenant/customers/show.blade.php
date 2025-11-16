@@ -43,6 +43,11 @@
             </div>
             
             <div style="margin-bottom: 15px;">
+                <strong>Area:</strong>
+                <div style="color: #666;">{{ $customer->area ? $customer->area->name : 'Not assigned' }}</div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
                 <strong>Created At:</strong>
                 <div style="color: #666;">{{ $customer->created_at->format('M d, Y H:i') }}</div>
             </div>

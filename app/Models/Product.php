@@ -53,5 +53,13 @@ class Product extends Model
         'rate_in_percent' => 'decimal:2',
         'company_id' => 'integer',
     ];
+
+    /**
+     * Get the company that owns the product.
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
 }
 

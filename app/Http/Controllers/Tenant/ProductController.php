@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('tenant.products.create');
+        $companies = Company::orderBy('name')->get();
+        return view('tenant.products.create', compact('companies'));
     }
 
     /**
@@ -33,28 +35,30 @@ class ProductController extends Controller
         $request->validate([
             'product_code' => 'required|string|max:50',
             'product_name' => 'required|string|max:255',
-            'pcs_in_box' => 'nullable|integer|min:0',
-            'supplier_id' => 'nullable|integer',
-            'bonus_type' => 'nullable|in:A,D',
-            'expire_date' => 'nullable|date',
             'packing' => 'nullable|string|max:100',
             'opening_qty_box' => 'nullable|integer|min:0',
-            'opening_qty_pcs' => 'nullable|integer|min:0',
             'minimum_stock_box' => 'nullable|integer|min:0',
-            'minimum_stock_pcs' => 'nullable|integer|min:0',
             'n_price_box' => 'nullable|numeric|min:0',
-            'n_price_pcs' => 'nullable|numeric|min:0',
             't_price_box' => 'nullable|numeric|min:0',
-            't_price_pcs' => 'nullable|numeric|min:0',
             'r_price_box' => 'nullable|numeric|min:0',
-            'r_price_pcs' => 'nullable|numeric|min:0',
             'sales_tax' => 'nullable|numeric|min:0|max:100',
             'rate_in_percent' => 'nullable|numeric|min:0|max:100',
             'default_rate_type' => 'nullable|in:T,R,N',
             'company_id' => 'nullable|integer',
         ]);
 
-        Product::create($request->all());
+        $data = $request->all();
+        
+        // Convert empty/null price values to 0 to match database defaults
+        $data['n_price_box'] = ($data['n_price_box'] === null || $data['n_price_box'] === '') ? 0 : $data['n_price_box'];
+        $data['t_price_box'] = ($data['t_price_box'] === null || $data['t_price_box'] === '') ? 0 : $data['t_price_box'];
+        $data['r_price_box'] = ($data['r_price_box'] === null || $data['r_price_box'] === '') ? 0 : $data['r_price_box'];
+        $data['sales_tax'] = ($data['sales_tax'] === null || $data['sales_tax'] === '') ? 0 : $data['sales_tax'];
+        $data['rate_in_percent'] = ($data['rate_in_percent'] === null || $data['rate_in_percent'] === '') ? 0 : $data['rate_in_percent'];
+        $data['opening_qty_box'] = ($data['opening_qty_box'] === null || $data['opening_qty_box'] === '') ? 0 : $data['opening_qty_box'];
+        $data['minimum_stock_box'] = ($data['minimum_stock_box'] === null || $data['minimum_stock_box'] === '') ? 0 : $data['minimum_stock_box'];
+
+        Product::create($data);
 
             return redirect(route_include_subdirectory('products.index'))
             ->with('success', 'Product created successfully');
@@ -73,7 +77,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('tenant.products.edit', compact('product'));
+        $companies = Company::orderBy('name')->get();
+        return view('tenant.products.edit', compact('product', 'companies'));
     }
 
     /**
@@ -84,28 +89,30 @@ class ProductController extends Controller
         $request->validate([
             'product_code' => 'required|string|max:50',
             'product_name' => 'required|string|max:255',
-            'pcs_in_box' => 'nullable|integer|min:0',
-            'supplier_id' => 'nullable|integer',
-            'bonus_type' => 'nullable|in:A,D',
-            'expire_date' => 'nullable|date',
             'packing' => 'nullable|string|max:100',
             'opening_qty_box' => 'nullable|integer|min:0',
-            'opening_qty_pcs' => 'nullable|integer|min:0',
             'minimum_stock_box' => 'nullable|integer|min:0',
-            'minimum_stock_pcs' => 'nullable|integer|min:0',
             'n_price_box' => 'nullable|numeric|min:0',
-            'n_price_pcs' => 'nullable|numeric|min:0',
             't_price_box' => 'nullable|numeric|min:0',
-            't_price_pcs' => 'nullable|numeric|min:0',
             'r_price_box' => 'nullable|numeric|min:0',
-            'r_price_pcs' => 'nullable|numeric|min:0',
             'sales_tax' => 'nullable|numeric|min:0|max:100',
             'rate_in_percent' => 'nullable|numeric|min:0|max:100',
             'default_rate_type' => 'nullable|in:T,R,N',
             'company_id' => 'nullable|integer',
         ]);
 
-        $product->update($request->all());
+        $data = $request->all();
+        
+        // Convert empty/null price values to 0 to match database defaults
+        $data['n_price_box'] = ($data['n_price_box'] === null || $data['n_price_box'] === '') ? 0 : $data['n_price_box'];
+        $data['t_price_box'] = ($data['t_price_box'] === null || $data['t_price_box'] === '') ? 0 : $data['t_price_box'];
+        $data['r_price_box'] = ($data['r_price_box'] === null || $data['r_price_box'] === '') ? 0 : $data['r_price_box'];
+        $data['sales_tax'] = ($data['sales_tax'] === null || $data['sales_tax'] === '') ? 0 : $data['sales_tax'];
+        $data['rate_in_percent'] = ($data['rate_in_percent'] === null || $data['rate_in_percent'] === '') ? 0 : $data['rate_in_percent'];
+        $data['opening_qty_box'] = ($data['opening_qty_box'] === null || $data['opening_qty_box'] === '') ? 0 : $data['opening_qty_box'];
+        $data['minimum_stock_box'] = ($data['minimum_stock_box'] === null || $data['minimum_stock_box'] === '') ? 0 : $data['minimum_stock_box'];
+
+        $product->update($data);
 
        
             return redirect(route_include_subdirectory('products.index'))
