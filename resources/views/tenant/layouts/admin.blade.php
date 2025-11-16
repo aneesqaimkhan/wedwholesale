@@ -135,7 +135,7 @@
         }
 
         .sidebar-brand {
-            font-size: 20px;
+			font-size: 18px;
             font-weight: 600;
             color: white;
             text-decoration: none;
@@ -152,6 +152,7 @@
         .nav-link {
             display: block;
             padding: 12px 20px;
+			font-size: 13px;
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             transition: all 0.3s;
@@ -190,7 +191,7 @@
 
         .top-navbar {
             background: white;
-            padding: 4px 12px;
+			padding: 2px 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
@@ -198,7 +199,7 @@
         }
 
         .navbar-title {
-            font-size: 18px;
+			font-size: 16px;
             font-weight: 600;
             color: #333;
         }
@@ -391,9 +392,9 @@
             background: #6D2D9D;
             color: white;
             border: none;
-            font-size: 24px;
+			font-size: 18px;
             cursor: pointer;
-            padding: 8px 12px;
+			padding: 4px 8px;
             border-radius: 5px;
             transition: background 0.3s;
         }
