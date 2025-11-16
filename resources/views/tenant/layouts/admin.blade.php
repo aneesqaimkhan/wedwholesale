@@ -231,7 +231,7 @@
         }
 
         .content-area {
-            padding: 15px 20px;
+            padding: 5px 10px;
         }
 
         .page-header {
@@ -444,7 +444,7 @@
             }
 
             .content-area {
-                padding: 10px;
+                padding: 5px;
             }
         }
 
