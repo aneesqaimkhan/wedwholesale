@@ -350,6 +350,12 @@
             margin-bottom: 15px;
         }
 
+        .shortcut-hint {
+            margin-left: 6px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.7);
+        }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -474,67 +480,67 @@
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('tenant.dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('tenant.dashboard') }}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" data-shortcut-key="d">
                         <i>🏠</i> Dashboard
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('customers.index') }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('customers.index') }}" class="nav-link {{ request()->is('customers*') ? 'active' : '' }}" data-shortcut-key="c">
                         <i>👥</i> Customers
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('suppliers.index') }}" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('suppliers.index') }}" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}" data-shortcut-key="u">
                         <i>🏭</i> Suppliers
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('salesmen.index') }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('salesmen.index') }}" class="nav-link {{ request()->is('salesmen*') ? 'active' : '' }}" data-shortcut-key="m">
                         <i>👨‍💼</i> Salesmen
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('areas.index') }}" class="nav-link {{ request()->is('areas*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('areas.index') }}" class="nav-link {{ request()->is('areas*') ? 'active' : '' }}" data-shortcut-key="a">
                         <i>📍</i> Areas
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('products.index') }}" class="nav-link {{ request()->is('products*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('products.index') }}" class="nav-link {{ request()->is('products*') ? 'active' : '' }}" data-shortcut-key="p">
                         <i>📦</i> Products
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('sales_invoices.index') }}" class="nav-link {{ request()->is('sales-invoices*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('sales_invoices.index') }}" class="nav-link {{ request()->is('sales-invoices*') ? 'active' : '' }}" data-shortcut-key="i">
                         <i>🧾</i> Sales Invoices
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('companies.index') }}" class="nav-link {{ request()->is('companies*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('companies.index') }}" class="nav-link {{ request()->is('companies*') ? 'active' : '' }}" data-shortcut-key="o">
                         <i>🏢</i> Companies
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('purchases.index') }}" class="nav-link {{ request()->is('purchases*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('purchases.index') }}" class="nav-link {{ request()->is('purchases*') ? 'active' : '' }}" data-shortcut-key="r">
                         <i>🛒</i> Purchases
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('receipt_payments.index') }}" class="nav-link {{ request()->is('receipt-payments*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('receipt_payments.index') }}" class="nav-link {{ request()->is('receipt-payments*') ? 'active' : '' }}" data-shortcut-key="t">
                         <i>💳</i> Receipt Payments
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('expense_types.index') }}" class="nav-link {{ request()->is('expense-types*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('expense_types.index') }}" class="nav-link {{ request()->is('expense-types*') ? 'active' : '' }}" data-shortcut-key="e">
                         <i>🏷️</i> Expense Types
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('expenses.index') }}" class="nav-link {{ request()->is('expenses*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('expenses.index') }}" class="nav-link {{ request()->is('expenses*') ? 'active' : '' }}" data-shortcut-key="x">
                         <i>💰</i> Expenses
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="{{ route_include_subdirectory('list_status_manual.index') }}" class="nav-link {{ request()->is('list-status-manual*') ? 'active' : '' }}">
+                    <a href="{{ route_include_subdirectory('list_status_manual.index') }}" class="nav-link {{ request()->is('list-status-manual*') ? 'active' : '' }}" data-shortcut-key="l">
                         <i>📊</i> List Status Manual
                     </a>
                 </div>
@@ -660,6 +666,163 @@
                 overlay.classList.remove('active');
             }
         });
+
+        // Sidebar menu keyboard shortcuts
+        (function() {
+            const links = document.querySelectorAll('.nav-link[data-shortcut-key]');
+            links.forEach(link => {
+                const key = (link.getAttribute('data-shortcut-key') || '').toUpperCase();
+                if (!key) return;
+                // Add visible hint once
+                if (!link.querySelector('.shortcut-hint')) {
+                    const hint = document.createElement('span');
+                    hint.className = 'shortcut-hint';
+                    hint.textContent = `(Alt+${key})`;
+                    link.appendChild(hint);
+                }
+                // Tooltip
+                if (!link.title) {
+                    link.title = `Shortcut: Alt+${key}`;
+                }
+            });
+
+            // Navigate on Alt+Key when not typing in inputs
+            window.addEventListener('keydown', function(e) {
+                if (!e.altKey || e.ctrlKey || e.metaKey) return;
+                const tag = (e.target && e.target.tagName || '').toLowerCase();
+                if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) return;
+                const key = (e.key || '').toLowerCase();
+                if (!key) return;
+                const link = document.querySelector(`.nav-link[data-shortcut-key="${key}"]`);
+                if (link && link.getAttribute('href')) {
+                    e.preventDefault();
+                    window.location.href = link.getAttribute('href');
+                }
+            });
+        })();
+
+        // Global CRUD shortcuts (Alt+1..4) based on current module
+        (function() {
+            function getActiveModuleLink() {
+                // Prefer the nav-link marked active
+                let link = document.querySelector('.sidebar .nav-link.active');
+                if (link) return link;
+                // Fallback: best match current location
+                const links = Array.from(document.querySelectorAll('.sidebar .nav-link[href]'));
+                const current = window.location.pathname;
+                let best = null;
+                let bestLen = -1;
+                links.forEach(l => {
+                    try {
+                        const u = new URL(l.href, window.location.origin);
+                        if (current.startsWith(u.pathname) && u.pathname.length > bestLen) {
+                            best = l;
+                            bestLen = u.pathname.length;
+                        }
+                    } catch (e) {}
+                });
+                return best;
+            }
+
+            function getModuleBaseHref() {
+                const link = getActiveModuleLink();
+                if (!link) return null;
+                try {
+                    const u = new URL(link.getAttribute('href'), window.location.origin);
+                    return u.origin + u.pathname.replace(/\/+$/,''); // no trailing slash
+                } catch (e) {
+                    return null;
+                }
+            }
+
+            function getCurrentRecordId() {
+                // Standard hooks any module page can set
+                if (window.currentRecordId) return String(window.currentRecordId);
+                // Look for common attributes in row or page
+                const el = document.querySelector('[data-record-id]') || document.getElementById('current_record_id');
+                if (el) {
+                    const val = el.getAttribute ? el.getAttribute('data-record-id') : (el.value || el.textContent || '').trim();
+                    if (val) return String(val);
+                }
+                // Selected row in a table
+                const selectedRow = document.querySelector('tr.selected, tr.active, tr.row-selected');
+                if (selectedRow && selectedRow.getAttribute('data-id')) return String(selectedRow.getAttribute('data-id'));
+                return null;
+            }
+
+            function navigate(url) {
+                if (!url) return;
+                window.location.href = url;
+            }
+
+            window.addEventListener('keydown', function(e) {
+                if (!e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+                const tag = (e.target && e.target.tagName || '').toLowerCase();
+                if (tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable)) return;
+
+                const base = getModuleBaseHref();
+                if (!base) return;
+
+                // Alt+1 => Create
+                if (e.key === '1') {
+                    e.preventDefault();
+                    navigate(base + '/create');
+                    return;
+                }
+                // Alt+2 => Index/List
+                if (e.key === '2') {
+                    e.preventDefault();
+                    navigate(base);
+                    return;
+                }
+                // Alt+3 => Edit (needs record id)
+                if (e.key === '3') {
+                    e.preventDefault();
+                    const id = getCurrentRecordId();
+                    if (!id) {
+                        alert('Select a record first to edit (no record id detected).');
+                        return;
+                    }
+                    navigate(base + '/' + encodeURIComponent(id) + '/edit');
+                    return;
+                }
+                // Alt+4 => Delete (needs record id)
+                if (e.key === '4') {
+                    e.preventDefault();
+                    const id = getCurrentRecordId();
+                    if (!id) {
+                        alert('Select a record first to delete (no record id detected).');
+                        return;
+                    }
+                    if (!confirm('Are you sure you want to delete this record?')) return;
+
+                    // Try to find an existing delete form for this id; else construct one
+                    let form = document.querySelector(`form[data-delete-form-for="${id}"]`);
+                    if (!form) {
+                        form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = base + '/' + encodeURIComponent(id);
+                        form.style.display = 'none';
+                        form.setAttribute('data-delete-form-for', id);
+                        // CSRF + method spoofing
+                        const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+                        const iCsrf = document.createElement('input');
+                        iCsrf.type = 'hidden';
+                        iCsrf.name = '_token';
+                        iCsrf.value = token;
+                        const iMethod = document.createElement('input');
+                        iMethod.type = 'hidden';
+                        iMethod.name = '_method';
+                        iMethod.value = 'DELETE';
+                        form.appendChild(iCsrf);
+                        form.appendChild(iMethod);
+                        document.body.appendChild(form);
+                    }
+                    form.submit();
+                    return;
+                }
+            });
+        })();
     </script>
 </body>
 </html>
