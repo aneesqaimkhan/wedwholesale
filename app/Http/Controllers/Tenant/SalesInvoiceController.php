@@ -332,6 +332,45 @@ class SalesInvoiceController extends Controller
             'message' => 'No previous invoice found for this customer-product combination'
         ]);
     }
+
+    /**
+     * Get current stock (in boxes) for a given product code.
+     */
+    public function getCurrentStock(Request $request)
+    {
+        $productCode = $request->input('product_code');
+        if (!$productCode) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product code is required',
+            ], 400);
+        }
+
+        // Opening stock in boxes from products table (nullable -> 0)
+        $openingBoxes = (float) (DB::connection('tenant')->table('products')
+            ->where('product_code', $productCode)
+            ->value('opening_qty_box') ?? 0);
+
+        // Total purchased boxes
+        $purchasedBoxes = (float) (DB::connection('tenant')->table('purchase_items')
+            ->where('product_code', $productCode)
+            ->sum('box') ?? 0);
+
+        // Total sold boxes
+        $soldBoxes = (float) (DB::connection('tenant')->table('sales_invoice_items')
+            ->where('product_code', $productCode)
+            ->sum('box') ?? 0);
+
+        $currentBoxes = max(0, $openingBoxes + $purchasedBoxes - $soldBoxes);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'product_code' => $productCode,
+                'stock_boxes' => $currentBoxes,
+            ],
+        ]);
+    }
 }
 
 

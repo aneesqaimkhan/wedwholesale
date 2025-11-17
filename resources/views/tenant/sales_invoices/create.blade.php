@@ -208,7 +208,12 @@
 
             <div class="card" style="padding:12px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <strong style="font-size: 12px;">Items</strong>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <strong style="font-size: 12px;">Items</strong>
+                        <span id="current_stock_badge" style="display:none; font-size:11px; color:#6D2D9D; background:#f4effa; border:1px solid #e4d7f6; padding:2px 6px; border-radius:4px;">
+                            Stock: 0 box
+                        </span>
+                    </div>
                     <button type="button" class="btn" id="add_row" style="padding: 6px 16px; font-size: 12px;">+ Add Item</button>
                 </div>
 
@@ -323,6 +328,32 @@
                 .catch(error => {
                     console.error('Error fetching last price:', error);
                     lastPriceInfo.style.display = 'none';
+                });
+        }
+
+        // Function to fetch and display current stock (boxes) for a product
+        function fetchAndShowCurrentStock(productCode) {
+            const badge = document.getElementById('current_stock_badge');
+            if (!productCode) {
+                if (badge) badge.style.display = 'none';
+                return;
+            }
+            const url = '{{ route_include_subdirectory("sales_invoices.get_current_stock", ["subdomain" => request()->route("subdomain")]) }}';
+            fetch(url + '?product_code=' + encodeURIComponent(productCode))
+                .then(response => response.json())
+                .then(data => {
+                    if (!badge) return;
+                    if (data.success && data.data) {
+                        const boxes = parseFloat(data.data.stock_boxes || 0);
+                        badge.textContent = 'Stock: ' + (isNaN(boxes) ? 0 : boxes.toFixed(0)) + ' box' + (boxes == 1 ? '' : 'es');
+                        badge.style.display = 'inline-block';
+                    } else {
+                        badge.textContent = 'Stock: 0 boxes';
+                        badge.style.display = 'inline-block';
+                    }
+                })
+                .catch(() => {
+                    if (badge) badge.style.display = 'none';
                 });
         }
         
@@ -761,6 +792,9 @@
                     
                     rate.value = selectedPrice.toFixed(2);
                     recalcRow(tr);
+
+                    // Show current stock for the selected product (boxes only)
+                    fetchAndShowCurrentStock(code);
                 }
 
                 // Product name search
@@ -779,6 +813,9 @@
                             break;
                         }
                     }
+                    // If no exact match, clear current stock badge
+                    const code = tr.querySelector('.product_code')?.value || '';
+                    fetchAndShowCurrentStock(code);
                 });
 
                 // Product code search
@@ -801,6 +838,8 @@
                             break;
                         }
                     }
+                    // Always try to show stock for whatever code is in the input
+                    fetchAndShowCurrentStock(codeVal);
                 });
 
                 // Rate type select change - update rate when dropdown changes
