@@ -544,6 +544,20 @@
                         <i>📊</i> List Status Manual
                     </a>
                 </div>
+                @if(auth()->user()->hasPermission('users.view') || auth()->user()->role === 'admin')
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('users.index') }}" class="nav-link {{ request()->is('users*') ? 'active' : '' }}" data-shortcut-key="w">
+                        <i>👥</i> Users
+                    </a>
+                </div>
+                @endif
+                @if(auth()->user()->hasPermission('users.manage_roles') || auth()->user()->role === 'admin')
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('roles.index') }}" class="nav-link {{ request()->is('roles*') ? 'active' : '' }}" data-shortcut-key="g">
+                        <i>👤</i> Roles & Permissions
+                    </a>
+                </div>
+                @endif
                 <div style="margin-top: 20px; padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <div style="color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 10px;">
                         Welcome, {{ auth()->user()->name }}

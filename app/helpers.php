@@ -39,3 +39,58 @@ if (!function_exists('route_include_subdirectory')) {
     }
 }
 
+if (!function_exists('user_has_permission')) {
+    /**
+     * Check if the authenticated user has a specific permission
+     * 
+     * @param  string  $permission
+     * @return bool
+     */
+    function user_has_permission($permission)
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+        
+        return auth()->user()->hasPermission($permission);
+    }
+}
+
+if (!function_exists('user_has_role')) {
+    /**
+     * Check if the authenticated user has a specific role
+     * 
+     * @param  string|array  $role
+     * @return bool
+     */
+    function user_has_role($role)
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+        
+        if (is_array($role)) {
+            return auth()->user()->hasAnyRole($role);
+        }
+        
+        return auth()->user()->hasRole($role);
+    }
+}
+
+if (!function_exists('user_has_any_permission')) {
+    /**
+     * Check if the authenticated user has any of the given permissions
+     * 
+     * @param  array  $permissions
+     * @return bool
+     */
+    function user_has_any_permission(array $permissions)
+    {
+        if (!auth()->check()) {
+            return false;
+        }
+        
+        return auth()->user()->hasAnyPermission($permissions);
+    }
+}
+

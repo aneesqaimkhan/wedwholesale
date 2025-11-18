@@ -371,6 +371,40 @@ class SalesInvoiceController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Get previous balance for a customer
+     */
+    public function getPreviousBalance(Request $request)
+    {
+        $customerCode = $request->input('customer_code');
+
+        if (!$customerCode) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Customer code is required',
+                'balance' => 0
+            ], 400);
+        }
+
+        // Calculate customer balance: Sum of sales invoice items net_amount - Sum of receipts
+        $salesTotal = (float) (DB::connection('tenant')->table('sales_invoice_items as items')
+            ->join('sales_invoices as invoices', 'items.invoice_id', '=', 'invoices.id')
+            ->where('invoices.customer_code', $customerCode)
+            ->sum('items.net_amount') ?? 0);
+
+        $receiptsTotal = (float) (DB::connection('tenant')->table('receipt_payments')
+            ->where('payment_from', 'customer')
+            ->where('entity_code', $customerCode)
+            ->sum('receipt') ?? 0);
+
+        $balance = $salesTotal - $receiptsTotal;
+
+        return response()->json([
+            'success' => true,
+            'balance' => round($balance, 2)
+        ]);
+    }
 }
 
 

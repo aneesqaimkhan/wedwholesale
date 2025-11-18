@@ -258,14 +258,89 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">
-                <button type="submit" class="btn" id="submit_btn" style="padding: 6px 16px; font-size: 12px;">Save Invoice</button>
+            <!-- Summary Row: Invoice Total, Previous Balance, Grand Total with Save Button -->
+            <div style="display: flex; align-items: center; padding: 6px 0; margin-top: 8px; border-top: 1px solid #e1e5e9; border-bottom: 1px solid #e1e5e9;">
+                <!-- Three Details - takes 8-9 columns -->
+                <div style="flex: 0 0 75%; display: flex; justify-content: space-between;">
+                    <div style="flex: 1; text-align: center;">
+                        <div style="font-size: 10px; color: #666; margin-bottom: 2px;">Invoice Total</div>
+                        <div style="font-size: 13px; font-weight: 600; color: #6D2D9D;" id="summary_invoice_total">0.00</div>
+                    </div>
+                    <div style="flex: 1; text-align: center; border-left: 1px solid #e1e5e9; border-right: 1px solid #e1e5e9;">
+                        <div style="font-size: 10px; color: #666; margin-bottom: 2px;">Previous Balance</div>
+                        <div style="font-size: 13px; font-weight: 600; color: #6D2D9D;" id="summary_previous_balance">0.00</div>
+                    </div>
+                    <div style="flex: 1; text-align: center;">
+                        <div style="font-size: 10px; color: #666; margin-bottom: 2px;">Grand Total</div>
+                        <div style="font-size: 14px; font-weight: 700; color: #6D2D9D;" id="summary_grand_total">0.00</div>
+                    </div>
+                </div>
+                <!-- Save Button - takes 3 columns -->
+                <div style="flex: 0 0 25%; text-align: right; padding-left: 15px;">
+                    <button type="submit" class="btn" id="submit_btn" style="padding: 6px 16px; font-size: 12px;">Save Invoice</button>
+                </div>
             </div>
         </form>
     </div>
 
 
     <script>
+        // Function to update summary row (Invoice Total, Previous Balance, Grand Total)
+        function updateSummaryRow(invoiceTotal) {
+            const invoiceTotalEl = document.getElementById('summary_invoice_total');
+            const previousBalanceEl = document.getElementById('summary_previous_balance');
+            const grandTotalEl = document.getElementById('summary_grand_total');
+            
+            const invoiceTotalValue = parseFloat(invoiceTotal || 0);
+            const previousBalanceValue = parseFloat(document.getElementById('previous_balance').value || 0);
+            const grandTotal = invoiceTotalValue + previousBalanceValue;
+            
+            if (invoiceTotalEl) invoiceTotalEl.textContent = invoiceTotalValue.toFixed(2);
+            if (previousBalanceEl) previousBalanceEl.textContent = previousBalanceValue.toFixed(2);
+            if (grandTotalEl) grandTotalEl.textContent = grandTotal.toFixed(2);
+        }
+
+        // Function to fetch and display previous balance for customer
+        function fetchPreviousBalance() {
+            const customerCode = document.getElementById('customer_code').value;
+            const balanceDisplay = document.getElementById('balance_display');
+            const previousBalanceInput = document.getElementById('previous_balance');
+            
+            if (!customerCode || customerCode.trim() === '') {
+                if (balanceDisplay) balanceDisplay.textContent = '0.00';
+                if (previousBalanceInput) previousBalanceInput.value = '0';
+                // Update summary row with zero balance
+                const invoiceTotal = parseFloat(document.getElementById('total_net')?.innerText || 0);
+                updateSummaryRow(invoiceTotal);
+                return;
+            }
+            
+            const url = '{{ route_include_subdirectory("sales_invoices.get_previous_balance", ["subdomain" => request()->route("subdomain")]) }}';
+            fetch(url + '?customer_code=' + encodeURIComponent(customerCode))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.balance !== undefined) {
+                        const balance = parseFloat(data.balance || 0);
+                        if (balanceDisplay) balanceDisplay.textContent = balance.toFixed(2);
+                        if (previousBalanceInput) previousBalanceInput.value = balance.toFixed(2);
+                    } else {
+                        if (balanceDisplay) balanceDisplay.textContent = '0.00';
+                        if (previousBalanceInput) previousBalanceInput.value = '0';
+                    }
+                    // Update summary row after balance is fetched
+                    const invoiceTotal = parseFloat(document.getElementById('total_net')?.innerText || 0);
+                    updateSummaryRow(invoiceTotal);
+                })
+                .catch(error => {
+                    console.error('Error fetching previous balance:', error);
+                    if (balanceDisplay) balanceDisplay.textContent = '0.00';
+                    if (previousBalanceInput) previousBalanceInput.value = '0';
+                    // Update summary row with zero balance on error
+                    const invoiceTotal = parseFloat(document.getElementById('total_net')?.innerText || 0);
+                    updateSummaryRow(invoiceTotal);
+                });
+        }
+
         // Function to fetch and display last price information
         function checkAndFetchLastPrice() {
             const customerCode = document.getElementById('customer_code').value;
@@ -560,15 +635,32 @@
             const addrEl = document.getElementById('address');
             customerInput && customerInput.addEventListener('change', function() {
                 const val = this.value;
+                let customerFound = false;
                 for (let i = 0; i < customers.length; i++) {
                     if (customers[i].value === val) {
                         codeEl.value = customers[i].dataset.id || '';
                         nameEl.value = customers[i].dataset.name || '';
                         addrEl.value = customers[i].dataset.address || '';
+                        // Fetch previous balance when customer is selected
+                        fetchPreviousBalance();
                         // Check if product is selected to fetch last price
                         checkAndFetchLastPrice();
+                        customerFound = true;
                         break;
                     }
+                }
+                // If customer not found (input cleared), reset balance
+                if (!customerFound) {
+                    codeEl.value = '';
+                    nameEl.value = '';
+                    addrEl.value = '';
+                    const balanceDisplay = document.getElementById('balance_display');
+                    const previousBalanceInput = document.getElementById('previous_balance');
+                    if (balanceDisplay) balanceDisplay.textContent = '0.00';
+                    if (previousBalanceInput) previousBalanceInput.value = '0';
+                    // Update summary row when customer is cleared
+                    const invoiceTotal = parseFloat(document.getElementById('total_net')?.innerText || 0);
+                    updateSummaryRow(invoiceTotal);
                 }
             });
 
@@ -666,6 +758,9 @@
                     console.error('total_discount element not found');
                 }
                 if (totalItemsCountEl) totalItemsCountEl.innerText = itemsCount;
+                
+                // Update summary row
+                updateSummaryRow(totalNet);
             }
 
             function wireRow(tr) {
@@ -941,6 +1036,9 @@
 
             addRowBtn.addEventListener('click', addRow);
             addRow();
+            
+            // Initialize summary row on page load
+            updateSummaryRow(0);
         })();
     </script>
 @endsection
