@@ -127,6 +127,317 @@ class ReportsController extends Controller
     }
 
     /**
+     * Sales Summary Report
+     */
+    public function salesSummary(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $groupBy = $request->input('group_by', 'none'); // none, daily, weekly, monthly, yearly
+
+        $query = SalesInvoice::query();
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        $invoices = $query->with('items')->get();
+
+        // Calculate totals
+        $totalInvoices = $invoices->count();
+        $totalSales = 0;
+        $totalQuantityBox = 0;
+        $totalQuantityPcs = 0;
+
+        foreach ($invoices as $invoice) {
+            $invoiceTotal = $invoice->items->sum('net_amount');
+            $totalSales += $invoiceTotal;
+            
+            foreach ($invoice->items as $item) {
+                $totalQuantityBox += $item->box;
+                $totalQuantityPcs += $item->pcs;
+            }
+        }
+
+        $averageInvoiceValue = $totalInvoices > 0 ? $totalSales / $totalInvoices : 0;
+
+        // Group data if requested
+        $groupedData = [];
+        if ($groupBy !== 'none') {
+            foreach ($invoices as $invoice) {
+                $date = \Carbon\Carbon::parse($invoice->invoice_date);
+                $key = '';
+
+                switch ($groupBy) {
+                    case 'daily':
+                        $key = $date->format('Y-m-d');
+                        break;
+                    case 'weekly':
+                        $key = $date->format('Y-W');
+                        break;
+                    case 'monthly':
+                        $key = $date->format('Y-m');
+                        break;
+                    case 'yearly':
+                        $key = $date->format('Y');
+                        break;
+                }
+
+                if (!isset($groupedData[$key])) {
+                    $groupedData[$key] = [
+                        'period' => $key,
+                        'total_invoices' => 0,
+                        'total_sales' => 0,
+                        'total_quantity_box' => 0,
+                        'total_quantity_pcs' => 0,
+                    ];
+                }
+
+                $invoiceTotal = $invoice->items->sum('net_amount');
+                $groupedData[$key]['total_invoices']++;
+                $groupedData[$key]['total_sales'] += $invoiceTotal;
+
+                foreach ($invoice->items as $item) {
+                    $groupedData[$key]['total_quantity_box'] += $item->box;
+                    $groupedData[$key]['total_quantity_pcs'] += $item->pcs;
+                }
+            }
+        }
+
+        return view('tenant.reports.sales-summary', compact(
+            'totalInvoices',
+            'totalSales',
+            'totalQuantityBox',
+            'totalQuantityPcs',
+            'averageInvoiceValue',
+            'groupedData',
+            'groupBy',
+            'fromDate',
+            'toDate'
+        ));
+    }
+
+    /**
+     * Sales Invoice Detail Report
+     */
+    public function salesInvoiceDetail(Request $request)
+    {
+        $query = SalesInvoice::query();
+
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $customerCode = $request->input('customer_code');
+        $salesmanCode = $request->input('salesman_code');
+        $invoiceNo = $request->input('invoice_no');
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        if ($customerCode) {
+            $query->where('customer_code', $customerCode);
+        }
+
+        if ($salesmanCode) {
+            $query->where('salesman_code', $salesmanCode);
+        }
+
+        if ($invoiceNo) {
+            $query->where('invoice_no', 'like', '%' . $invoiceNo . '%');
+        }
+
+        $invoices = $query->with('items')->orderByDesc('invoice_date')->orderByDesc('id')->get();
+
+        // Calculate invoice totals and current balances
+        foreach ($invoices as $invoice) {
+            $invoiceTotal = $invoice->items->sum('net_amount');
+            $invoice->total_amount = $invoiceTotal;
+            $invoice->current_balance = $invoice->previous_balance + $invoiceTotal;
+        }
+
+        $customers = Customer::orderBy('name')->get();
+        $salesmen = Salesman::orderBy('name')->get();
+
+        return view('tenant.reports.sales-invoice-detail', compact(
+            'invoices',
+            'customers',
+            'salesmen',
+            'fromDate',
+            'toDate',
+            'customerCode',
+            'salesmanCode',
+            'invoiceNo'
+        ));
+    }
+
+    /**
+     * Sales by Customer Report
+     */
+    public function salesByCustomer(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $customerCode = $request->input('customer_code');
+        $sortBy = $request->input('sort_by', 'total_sales'); // total_sales, customer_name
+
+        $query = SalesInvoice::query();
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        if ($customerCode) {
+            $query->where('customer_code', $customerCode);
+        }
+
+        $invoices = $query->with('items')->get();
+
+        // Group by customer
+        $customerData = [];
+        foreach ($invoices as $invoice) {
+            if (!isset($customerData[$invoice->customer_code])) {
+                $customer = Customer::find($invoice->customer_code);
+                $customerData[$invoice->customer_code] = [
+                    'customer_code' => $invoice->customer_code,
+                    'customer_name' => $customer ? $customer->name : $invoice->customer_name,
+                    'number_of_invoices' => 0,
+                    'total_sales_amount' => 0,
+                    'total_quantity_box' => 0,
+                    'total_quantity_pcs' => 0,
+                    'outstanding_balance' => 0,
+                ];
+            }
+
+            $invoiceTotal = $invoice->items->sum('net_amount');
+            $customerData[$invoice->customer_code]['number_of_invoices']++;
+            $customerData[$invoice->customer_code]['total_sales_amount'] += $invoiceTotal;
+            $customerData[$invoice->customer_code]['outstanding_balance'] += $invoice->previous_balance + $invoiceTotal;
+
+            foreach ($invoice->items as $item) {
+                $customerData[$invoice->customer_code]['total_quantity_box'] += $item->box;
+                $customerData[$invoice->customer_code]['total_quantity_pcs'] += $item->pcs;
+            }
+        }
+
+        // Calculate average order value
+        foreach ($customerData as &$data) {
+            $data['average_order_value'] = $data['number_of_invoices'] > 0 
+                ? $data['total_sales_amount'] / $data['number_of_invoices'] 
+                : 0;
+        }
+
+        // Sort data
+        if ($sortBy === 'total_sales') {
+            uasort($customerData, function($a, $b) {
+                return $b['total_sales_amount'] <=> $a['total_sales_amount'];
+            });
+        } else {
+            uasort($customerData, function($a, $b) {
+                return strcmp($a['customer_name'], $b['customer_name']);
+            });
+        }
+
+        $customers = Customer::orderBy('name')->get();
+
+        return view('tenant.reports.sales-by-customer', compact(
+            'customerData',
+            'customers',
+            'fromDate',
+            'toDate',
+            'customerCode',
+            'sortBy'
+        ));
+    }
+
+    /**
+     * Sales by Product Report
+     */
+    public function salesByProduct(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $productCode = $request->input('product_code');
+
+        $query = SalesInvoice::query();
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        $invoices = $query->with('items')->get();
+
+        // Group by product
+        $productData = [];
+        foreach ($invoices as $invoice) {
+            foreach ($invoice->items as $item) {
+                if ($productCode && $item->product_code != $productCode) {
+                    continue;
+                }
+
+                if (!isset($productData[$item->product_code])) {
+                    $productData[$item->product_code] = [
+                        'product_code' => $item->product_code,
+                        'product_name' => $item->product_name,
+                        'total_quantity_box' => 0,
+                        'total_quantity_pcs' => 0,
+                        'total_sales_amount' => 0,
+                        'number_of_invoices' => 0,
+                        'invoice_ids' => [],
+                    ];
+                }
+
+                $productData[$item->product_code]['total_quantity_box'] += $item->box;
+                $productData[$item->product_code]['total_quantity_pcs'] += $item->pcs;
+                $productData[$item->product_code]['total_sales_amount'] += $item->net_amount;
+
+                if (!in_array($invoice->id, $productData[$item->product_code]['invoice_ids'])) {
+                    $productData[$item->product_code]['invoice_ids'][] = $invoice->id;
+                    $productData[$item->product_code]['number_of_invoices']++;
+                }
+            }
+        }
+
+        // Calculate average selling price
+        foreach ($productData as &$data) {
+            $totalQuantity = $data['total_quantity_box'] + ($data['total_quantity_pcs'] / 100); // Convert pcs to boxes for calculation
+            $data['average_selling_price'] = $totalQuantity > 0 
+                ? $data['total_sales_amount'] / $totalQuantity 
+                : 0;
+        }
+
+        // Sort by total sales amount descending
+        uasort($productData, function($a, $b) {
+            return $b['total_sales_amount'] <=> $a['total_sales_amount'];
+        });
+
+        $products = Product::orderBy('product_name')->get();
+
+        return view('tenant.reports.sales-by-product', compact(
+            'productData',
+            'products',
+            'fromDate',
+            'toDate',
+            'productCode'
+        ));
+    }
+
+    /**
      * Profit Report
      */
     public function profit(Request $request)
@@ -374,6 +685,328 @@ class ReportsController extends Controller
         $expenseTypes = ExpenseType::orderBy('name')->get();
 
         return view('tenant.reports.expense', compact('expenses', 'totalAmount', 'expenseByType', 'expenseTypes', 'fromDate', 'toDate', 'expenseTypeId'));
+    }
+
+    /**
+     * Purchase Summary Report
+     */
+    public function purchaseSummary(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+
+        $query = Purchase::query();
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        $purchases = $query->with('items')->get();
+
+        // Calculate totals
+        $totalInvoices = $purchases->count();
+        $totalPurchaseAmount = 0;
+        $totalQuantityBox = 0;
+        $totalQuantityPcs = 0;
+
+        foreach ($purchases as $purchase) {
+            $purchaseTotal = $purchase->items->sum('net_amount');
+            $totalPurchaseAmount += $purchaseTotal;
+            
+            foreach ($purchase->items as $item) {
+                $totalQuantityBox += $item->box;
+                $totalQuantityPcs += $item->pcs;
+            }
+        }
+
+        $averagePurchaseValue = $totalInvoices > 0 ? $totalPurchaseAmount / $totalInvoices : 0;
+
+        return view('tenant.reports.purchase-summary', compact(
+            'totalInvoices',
+            'totalPurchaseAmount',
+            'totalQuantityBox',
+            'totalQuantityPcs',
+            'averagePurchaseValue',
+            'fromDate',
+            'toDate'
+        ));
+    }
+
+    /**
+     * Purchase Invoice Detail Report
+     */
+    public function purchaseInvoiceDetail(Request $request)
+    {
+        $query = Purchase::query();
+
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $companyCode = $request->input('company_code');
+        $invoiceNo = $request->input('invoice_no');
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        if ($companyCode) {
+            $query->where('company_code', $companyCode);
+        }
+
+        if ($invoiceNo) {
+            $query->where('invoice_no', 'like', '%' . $invoiceNo . '%');
+        }
+
+        $purchases = $query->with('items')->orderByDesc('invoice_date')->orderByDesc('id')->get();
+
+        // Calculate purchase totals and current balances
+        foreach ($purchases as $purchase) {
+            $purchaseTotal = $purchase->items->sum('net_amount');
+            $purchase->total_amount = $purchaseTotal;
+            $purchase->current_balance = $purchase->previous_balance + $purchaseTotal;
+        }
+
+        $companies = Company::orderBy('name')->get();
+
+        return view('tenant.reports.purchase-invoice-detail', compact(
+            'purchases',
+            'companies',
+            'fromDate',
+            'toDate',
+            'companyCode',
+            'invoiceNo'
+        ));
+    }
+
+    /**
+     * Purchase by Supplier Report
+     */
+    public function purchaseBySupplier(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $companyCode = $request->input('company_code');
+
+        $query = Purchase::query();
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        if ($companyCode) {
+            $query->where('company_code', $companyCode);
+        }
+
+        $purchases = $query->with('items')->get();
+
+        // Group by supplier (company)
+        $supplierData = [];
+        foreach ($purchases as $purchase) {
+            $supplierKey = $purchase->company_code;
+
+            if (!isset($supplierData[$supplierKey])) {
+                $supplierData[$supplierKey] = [
+                    'supplier_code' => $purchase->company_code,
+                    'supplier_name' => $purchase->company_name,
+                    'number_of_invoices' => 0,
+                    'total_purchase_amount' => 0,
+                    'total_quantity_box' => 0,
+                    'total_quantity_pcs' => 0,
+                    'outstanding_balance' => 0,
+                ];
+            }
+
+            $purchaseTotal = $purchase->items->sum('net_amount');
+            $supplierData[$supplierKey]['number_of_invoices']++;
+            $supplierData[$supplierKey]['total_purchase_amount'] += $purchaseTotal;
+            $supplierData[$supplierKey]['outstanding_balance'] += $purchase->previous_balance + $purchaseTotal;
+
+            foreach ($purchase->items as $item) {
+                $supplierData[$supplierKey]['total_quantity_box'] += $item->box;
+                $supplierData[$supplierKey]['total_quantity_pcs'] += $item->pcs;
+            }
+        }
+
+        // Sort by total purchases descending
+        uasort($supplierData, function($a, $b) {
+            return $b['total_purchase_amount'] <=> $a['total_purchase_amount'];
+        });
+
+        $companies = Company::orderBy('name')->get();
+
+        return view('tenant.reports.purchase-by-supplier', compact(
+            'supplierData',
+            'companies',
+            'fromDate',
+            'toDate',
+            'companyCode'
+        ));
+    }
+
+    /**
+     * Low Stock Report
+     */
+    public function lowStock(Request $request)
+    {
+        $query = Product::query();
+
+        $supplierId = $request->input('supplier_id');
+        $companyId = $request->input('company_id');
+
+        if ($supplierId) {
+            $query->where('supplier_id', $supplierId);
+        }
+
+        if ($companyId) {
+            $query->where('company_id', $companyId);
+        }
+
+        $products = $query->orderBy('product_name')->get();
+
+        // Calculate current stock and filter low stock items
+        $lowStockProducts = [];
+        foreach ($products as $product) {
+            // Get total purchased boxes
+            $purchasedBoxes = PurchaseItem::where('product_code', $product->product_code)
+                ->sum('box');
+            
+            // Get total sold boxes
+            $soldBoxes = SalesInvoiceItem::where('product_code', $product->product_code)
+                ->sum('box');
+            
+            // Calculate current stock
+            $currentStockBox = $product->opening_qty_box + $purchasedBoxes - $soldBoxes;
+            $currentStockPcs = $currentStockBox * $product->pcs_in_box;
+            
+            // Check if low stock
+            if ($currentStockBox <= $product->minimum_stock_box) {
+                $stockDeficit = $product->minimum_stock_box - $currentStockBox;
+                
+                $supplier = $product->supplier_id ? Supplier::find($product->supplier_id) : null;
+                
+                $lowStockProducts[] = [
+                    'product_code' => $product->product_code,
+                    'product_name' => $product->product_name,
+                    'current_stock_box' => $currentStockBox,
+                    'current_stock_pcs' => $currentStockPcs,
+                    'minimum_stock_box' => $product->minimum_stock_box,
+                    'minimum_stock_pcs' => $product->minimum_stock_pcs,
+                    'stock_deficit' => $stockDeficit,
+                    'supplier' => $supplier ? $supplier->name : 'N/A',
+                    'company' => $product->company ? $product->company->name : 'N/A',
+                ];
+            }
+        }
+
+        $suppliers = Supplier::orderBy('name')->get();
+        $companies = Company::orderBy('name')->get();
+
+        return view('tenant.reports.low-stock', compact(
+            'lowStockProducts',
+            'suppliers',
+            'companies',
+            'supplierId',
+            'companyId'
+        ));
+    }
+
+    /**
+     * Stock Movement Report
+     */
+    public function stockMovement(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $productCode = $request->input('product_code');
+
+        $query = Product::query();
+
+        if ($productCode) {
+            $query->where('product_code', $productCode);
+        }
+
+        $products = $query->orderBy('product_name')->get();
+
+        $movementData = [];
+        foreach ($products as $product) {
+            // Opening stock
+            $openingStockBox = $product->opening_qty_box;
+            $openingStockPcs = $product->opening_qty_pcs;
+
+            // Get purchases in date range
+            $purchaseQuery = PurchaseItem::where('product_code', $product->product_code);
+            if ($fromDate || $toDate) {
+                $purchaseQuery->whereHas('purchase', function($q) use ($fromDate, $toDate) {
+                    if ($fromDate) {
+                        $q->where('invoice_date', '>=', $fromDate);
+                    }
+                    if ($toDate) {
+                        $q->where('invoice_date', '<=', $toDate);
+                    }
+                });
+            }
+            $purchases = $purchaseQuery->get();
+            $purchaseQuantityBox = $purchases->sum('box');
+            $purchaseQuantityPcs = $purchases->sum('pcs');
+            $purchaseAmount = $purchases->sum('net_amount');
+
+            // Get sales in date range
+            $salesQuery = SalesInvoiceItem::where('product_code', $product->product_code);
+            if ($fromDate || $toDate) {
+                $salesQuery->whereHas('invoice', function($q) use ($fromDate, $toDate) {
+                    if ($fromDate) {
+                        $q->where('invoice_date', '>=', $fromDate);
+                    }
+                    if ($toDate) {
+                        $q->where('invoice_date', '<=', $toDate);
+                    }
+                });
+            }
+            $sales = $salesQuery->get();
+            $salesQuantityBox = $sales->sum('box');
+            $salesQuantityPcs = $sales->sum('pcs');
+            $salesAmount = $sales->sum('net_amount');
+
+            // Calculate closing stock
+            $closingStockBox = $openingStockBox + $purchaseQuantityBox - $salesQuantityBox;
+            $closingStockPcs = $openingStockPcs + $purchaseQuantityPcs - $salesQuantityPcs;
+
+            $movementData[] = [
+                'product_code' => $product->product_code,
+                'product_name' => $product->product_name,
+                'opening_stock_box' => $openingStockBox,
+                'opening_stock_pcs' => $openingStockPcs,
+                'purchase_quantity_box' => $purchaseQuantityBox,
+                'purchase_quantity_pcs' => $purchaseQuantityPcs,
+                'purchase_amount' => $purchaseAmount,
+                'sales_quantity_box' => $salesQuantityBox,
+                'sales_quantity_pcs' => $salesQuantityPcs,
+                'sales_amount' => $salesAmount,
+                'closing_stock_box' => $closingStockBox,
+                'closing_stock_pcs' => $closingStockPcs,
+            ];
+        }
+
+        $productsList = Product::orderBy('product_name')->get();
+
+        return view('tenant.reports.stock-movement', compact(
+            'movementData',
+            'productsList',
+            'fromDate',
+            'toDate',
+            'productCode'
+        ));
     }
 }
 
