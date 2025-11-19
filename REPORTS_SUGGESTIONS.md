@@ -1,6 +1,6 @@
 # Reports Suggestions for WebWholesale System
 
-This document outlines suggested reports that can be implemented in the WebWholesale multi-tenant wholesale management system.
+This document outlines the essential reports that can be implemented in the WebWholesale multi-tenant wholesale management system.
 
 ## 1. Sales Reports
 
@@ -46,45 +46,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Average selling price
 - **Filters**: Date range, Product code/name
 
-### 1.5 Sales by Salesman Report
-- **Purpose**: Performance tracking by salesman
-- **Data Points**:
-  - Salesman name and code
-  - Number of invoices
-  - Total sales amount
-  - Number of customers served
-  - Average invoice value
-- **Sorting**: By total sales (descending)
-
-### 1.6 Sales by Area Report
-- **Purpose**: Geographic sales analysis
-- **Data Points**:
-  - Area name
-  - Number of customers
-  - Total sales amount
-  - Number of invoices
-  - Average sales per customer
-
-### 1.7 Daily Sales Report
-- **Purpose**: Day-to-day sales tracking
-- **Data Points**:
-  - Date
-  - Number of invoices
-  - Total sales amount
-  - Total quantity sold
-  - Top selling products
-  - Top customers
-
-### 1.8 Sales Tax Report
-- **Purpose**: Tax calculation and compliance
-- **Data Points**:
-  - Invoice number and date
-  - Customer name
-  - Taxable amount
-  - Tax amount (STX)
-  - Total amount
-- **Filters**: Date range, Tax rate
-
 ## 2. Purchase Reports
 
 ### 2.1 Purchase Summary Report
@@ -115,16 +76,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Total quantity purchased
   - Outstanding balance
 - **Sorting**: By total purchases (descending)
-
-### 2.4 Purchase by Product Report
-- **Purpose**: Product-wise purchase analysis
-- **Data Points**:
-  - Product code and name
-  - Total quantity purchased
-  - Total purchase amount
-  - Average purchase price
-  - Number of purchase invoices
-- **Filters**: Date range, Product code/name
 
 ## 3. Inventory Reports
 
@@ -161,26 +112,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Date range
 - **Filters**: Date range, Product
 
-### 3.4 Product Expiry Report
-- **Purpose**: Track products nearing expiration
-- **Data Points**:
-  - Product code and name
-  - Expiry date
-  - Current stock
-  - Days until expiry
-  - Alert status (Expired, Expiring Soon, Good)
-- **Filters**: Expiry date range, Alert status
-
-### 3.5 Stock Valuation Report
-- **Purpose**: Calculate inventory value
-- **Data Points**:
-  - Product code and name
-  - Current stock (boxes, pcs)
-  - Cost price (N/T/R price)
-  - Total stock value
-  - Total valuation
-- **Filters**: Rate type (N/T/R), Supplier
-
 ## 4. Financial Reports
 
 ### 4.1 Profit & Loss Report
@@ -195,40 +126,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Date range
 - **Grouping**: Daily, Weekly, Monthly, Yearly
 
-### 4.2 Cash Flow Report
-- **Purpose**: Track money in and out
-- **Data Points**:
-  - Opening balance
-  - Receipts (from customers)
-  - Payments (to suppliers)
-  - Expenses
-  - Closing balance
-  - Net cash flow
-  - Date range
-
-### 4.3 Receipts Report
-- **Purpose**: Track customer payments
-- **Data Points**:
-  - Payment date
-  - Invoice number
-  - Customer name and code
-  - Receipt amount
-  - Payment method
-  - Remarks
-- **Filters**: Date range, Customer, Invoice number
-
-### 4.4 Payments Report
-- **Purpose**: Track supplier payments
-- **Data Points**:
-  - Payment date
-  - Invoice number
-  - Supplier name and code
-  - Payment amount
-  - Payment method
-  - Remarks
-- **Filters**: Date range, Supplier, Invoice number
-
-### 4.5 Outstanding Receivables Report
+### 4.2 Outstanding Receivables Report
 - **Purpose**: Track money owed by customers
 - **Data Points**:
   - Customer name and code
@@ -240,7 +138,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Ageing analysis (0-30, 31-60, 61-90, 90+ days)
 - **Sorting**: By outstanding amount (descending), by days outstanding
 
-### 4.6 Outstanding Payables Report
+### 4.3 Outstanding Payables Report
 - **Purpose**: Track money owed to suppliers
 - **Data Points**:
   - Supplier name and code
@@ -252,7 +150,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Ageing analysis
 - **Sorting**: By outstanding amount (descending), by days outstanding
 
-### 4.7 Expense Report
+### 4.4 Expense Report
 - **Purpose**: Track all business expenses
 - **Data Points**:
   - Expense date
@@ -263,16 +161,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Total expenses
 - **Filters**: Date range, Expense type
 - **Grouping**: By expense type, by date
-
-### 4.8 Expense by Type Report
-- **Purpose**: Analyze expenses by category
-- **Data Points**:
-  - Expense type name
-  - Number of expenses
-  - Total amount
-  - Percentage of total expenses
-  - Average expense amount
-- **Visualization**: Pie chart, Bar chart
 
 ## 5. Customer Reports
 
@@ -299,18 +187,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - All invoice items
 - **Filters**: Customer, Date range
 
-### 5.3 Top Customers Report
-- **Purpose**: Identify best customers
-- **Data Points**:
-  - Customer name and code
-  - Total purchase amount
-  - Number of invoices
-  - Average order value
-  - Last purchase date
-- **Sorting**: By total purchases (descending)
-- **Limit**: Top 10, 20, 50, or custom
-
-### 5.4 Customer Balance Report
+### 5.3 Customer Balance Report
 - **Purpose**: Customer account balances
 - **Data Points**:
   - Customer name and code
@@ -344,17 +221,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - All purchase items
 - **Filters**: Supplier, Date range
 
-### 6.3 Top Suppliers Report
-- **Purpose**: Identify main suppliers
-- **Data Points**:
-  - Supplier name and code
-  - Total purchase amount
-  - Number of purchase invoices
-  - Average purchase value
-  - Last purchase date
-- **Sorting**: By total purchases (descending)
-
-### 6.4 Supplier Balance Report
+### 6.3 Supplier Balance Report
 - **Purpose**: Supplier account balances
 - **Data Points**:
   - Supplier name and code
@@ -378,25 +245,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
 - **Filters**: Date range, Salesman
 - **Sorting**: By total sales (descending)
 
-### 7.2 Salesman Customer Report
-- **Purpose**: Customers handled by each salesman
-- **Data Points**:
-  - Salesman name
-  - Customer name and code
-  - Number of invoices
-  - Total sales amount
-  - Last sale date
-- **Filters**: Salesman, Date range
-
-### 7.3 Salesman Product Sales Report
-- **Purpose**: Products sold by each salesman
-- **Data Points**:
-  - Salesman name
-  - Product code and name
-  - Total quantity sold
-  - Total sales amount
-- **Filters**: Salesman, Product, Date range
-
 ## 8. Product Reports
 
 ### 8.1 Product List Report
@@ -411,18 +259,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Expiry date
 - **Filters**: Supplier, Stock status, Expiry status
 
-### 8.2 Product Sales History
-- **Purpose**: Sales performance of individual products
-- **Data Points**:
-  - Product code and name
-  - Invoice number and date
-  - Customer name
-  - Quantity sold
-  - Selling price
-  - Total amount
-- **Filters**: Product, Date range, Customer
-
-### 8.3 Fast Moving Products Report
+### 8.2 Fast Moving Products Report
 - **Purpose**: Identify best-selling products
 - **Data Points**:
   - Product code and name
@@ -433,17 +270,7 @@ This document outlines suggested reports that can be implemented in the WebWhole
 - **Sorting**: By quantity sold (descending)
 - **Filters**: Date range
 
-### 8.4 Slow Moving Products Report
-- **Purpose**: Identify products with low sales
-- **Data Points**:
-  - Product code and name
-  - Current stock
-  - Total quantity sold (in period)
-  - Last sale date
-  - Days since last sale
-- **Filters**: Date range, Minimum days since last sale
-
-### 8.5 Product Profitability Report
+### 8.3 Product Profitability Report
 - **Purpose**: Analyze profit margins by product
 - **Data Points**:
   - Product code and name
@@ -455,52 +282,9 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Profit margin percentage
 - **Sorting**: By total profit (descending), by profit margin
 
-## 9. Analytical Reports
+## 9. Dashboard Summary Report
 
-### 9.1 Sales Trend Analysis
-- **Purpose**: Identify sales patterns over time
-- **Data Points**:
-  - Time period (daily, weekly, monthly)
-  - Sales amount
-  - Number of invoices
-  - Growth percentage
-  - Comparison with previous period
-- **Visualization**: Line chart, Bar chart
-
-### 9.2 Product Performance Matrix
-- **Purpose**: Compare products across multiple metrics
-- **Data Points**:
-  - Product code and name
-  - Sales volume
-  - Sales value
-  - Profit margin
-  - Stock turnover
-  - Ranking
-- **Visualization**: Matrix table, Heat map
-
-### 9.3 Customer Segmentation Report
-- **Purpose**: Categorize customers by value
-- **Data Points**:
-  - Customer name
-  - Total purchases
-  - Number of orders
-  - Average order value
-  - Last purchase date
-  - Segment (High Value, Medium Value, Low Value)
-- **Filters**: Segment, Date range
-
-### 9.4 Comparative Analysis Report
-- **Purpose**: Compare performance across periods
-- **Data Points**:
-  - Current period sales
-  - Previous period sales
-  - Growth/Decline amount
-  - Growth/Decline percentage
-  - Top products comparison
-  - Top customers comparison
-- **Periods**: Month-over-month, Year-over-year, Custom periods
-
-### 9.5 Dashboard Summary Report
+### 9.1 Dashboard Summary Report
 - **Purpose**: Key metrics at a glance
 - **Data Points**:
   - Today's sales
@@ -512,25 +296,6 @@ This document outlines suggested reports that can be implemented in the WebWhole
   - Top 5 products
   - Top 5 customers
 - **Visualization**: Dashboard with charts and KPIs
-
-## 10. Custom Reports
-
-### 10.1 Custom Date Range Report
-- **Purpose**: Flexible reporting for any date range
-- **Features**:
-  - Select any start and end date
-  - Apply to any report type
-  - Compare multiple periods
-  - Export options
-
-### 10.2 Multi-Criteria Report Builder
-- **Purpose**: Create custom reports with multiple filters
-- **Features**:
-  - Select data fields
-  - Apply multiple filters
-  - Choose grouping options
-  - Select sorting criteria
-  - Save report templates
 
 ## Implementation Priority
 
@@ -553,11 +318,10 @@ This document outlines suggested reports that can be implemented in the WebWhole
 7. Dashboard Summary Report
 
 ### Phase 3 (Lower Priority)
-1. All analytical reports
-2. Custom report builder
-3. Advanced visualizations
-4. Scheduled report generation
-5. Email report distribution
+1. Remaining reports
+2. Advanced visualizations
+3. Scheduled report generation
+4. Email report distribution
 
 ## Technical Considerations
 
@@ -584,4 +348,3 @@ This document outlines suggested reports that can be implemented in the WebWhole
 - Tenant isolation (each tenant sees only their data)
 - Audit logging for sensitive reports
 - Export restrictions based on user permissions
-
