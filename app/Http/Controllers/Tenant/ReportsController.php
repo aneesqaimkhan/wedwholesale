@@ -14,6 +14,7 @@ use App\Models\Salesman;
 use App\Models\Expense;
 use App\Models\ExpenseType;
 use App\Models\Company;
+use App\Models\ReceiptPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -1007,6 +1008,754 @@ class ReportsController extends Controller
             'toDate',
             'productCode'
         ));
+    }
+
+    /**
+     * Profit & Loss Report
+     */
+    public function profitLoss(Request $request)
+    {
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+        $groupBy = $request->input('group_by', 'none'); // none, daily, weekly, monthly, yearly
+
+        // Get sales data
+        $salesQuery = SalesInvoice::query();
+        if ($fromDate) {
+            $salesQuery->where('invoice_date', '>=', $fromDate);
+        }
+        if ($toDate) {
+            $salesQuery->where('invoice_date', '<=', $toDate);
+        }
+        $salesInvoices = $salesQuery->with('items')->get();
+
+        // Get purchase data
+        $purchaseQuery = Purchase::query();
+        if ($fromDate) {
+            $purchaseQuery->where('invoice_date', '>=', $fromDate);
+        }
+        if ($toDate) {
+            $purchaseQuery->where('invoice_date', '<=', $toDate);
+        }
+        $purchases = $purchaseQuery->with('items')->get();
+
+        // Get expense data
+        $expenseQuery = Expense::query();
+        if ($fromDate) {
+            $expenseQuery->where('date', '>=', $fromDate);
+        }
+        if ($toDate) {
+            $expenseQuery->where('date', '<=', $toDate);
+        }
+        $expenses = $expenseQuery->get();
+
+        // Calculate totals
+        $totalSalesRevenue = 0;
+        foreach ($salesInvoices as $invoice) {
+            $totalSalesRevenue += $invoice->items->sum('net_amount');
+        }
+
+        $totalPurchaseCost = 0;
+        foreach ($purchases as $purchase) {
+            $totalPurchaseCost += $purchase->items->sum('net_amount');
+        }
+
+        $totalExpenses = $expenses->sum('amount');
+        $grossProfit = $totalSalesRevenue - $totalPurchaseCost;
+        $netProfit = $grossProfit - $totalExpenses;
+        $profitMargin = $totalSalesRevenue > 0 ? ($netProfit / $totalSalesRevenue) * 100 : 0;
+
+        // Group data if requested
+        $groupedData = [];
+        if ($groupBy !== 'none') {
+            // Group sales
+            foreach ($salesInvoices as $invoice) {
+                $date = \Carbon\Carbon::parse($invoice->invoice_date);
+                $key = $this->getGroupKey($date, $groupBy);
+
+                if (!isset($groupedData[$key])) {
+                    $groupedData[$key] = [
+                        'period' => $key,
+                        'sales_revenue' => 0,
+                        'purchase_cost' => 0,
+                        'expenses' => 0,
+                        'gross_profit' => 0,
+                        'net_profit' => 0,
+                    ];
+                }
+
+                $groupedData[$key]['sales_revenue'] += $invoice->items->sum('net_amount');
+            }
+
+            // Group purchases
+            foreach ($purchases as $purchase) {
+                $date = \Carbon\Carbon::parse($purchase->invoice_date);
+                $key = $this->getGroupKey($date, $groupBy);
+
+                if (!isset($groupedData[$key])) {
+                    $groupedData[$key] = [
+                        'period' => $key,
+                        'sales_revenue' => 0,
+                        'purchase_cost' => 0,
+                        'expenses' => 0,
+                        'gross_profit' => 0,
+                        'net_profit' => 0,
+                    ];
+                }
+
+                $groupedData[$key]['purchase_cost'] += $purchase->items->sum('net_amount');
+            }
+
+            // Group expenses
+            foreach ($expenses as $expense) {
+                $date = \Carbon\Carbon::parse($expense->date);
+                $key = $this->getGroupKey($date, $groupBy);
+
+                if (!isset($groupedData[$key])) {
+                    $groupedData[$key] = [
+                        'period' => $key,
+                        'sales_revenue' => 0,
+                        'purchase_cost' => 0,
+                        'expenses' => 0,
+                        'gross_profit' => 0,
+                        'net_profit' => 0,
+                    ];
+                }
+
+                $groupedData[$key]['expenses'] += $expense->amount;
+            }
+
+            // Calculate profits for each group
+            foreach ($groupedData as &$data) {
+                $data['gross_profit'] = $data['sales_revenue'] - $data['purchase_cost'];
+                $data['net_profit'] = $data['gross_profit'] - $data['expenses'];
+            }
+        }
+
+        return view('tenant.reports.profit-loss', compact(
+            'totalSalesRevenue',
+            'totalPurchaseCost',
+            'grossProfit',
+            'totalExpenses',
+            'netProfit',
+            'profitMargin',
+            'groupedData',
+            'groupBy',
+            'fromDate',
+            'toDate'
+        ));
+    }
+
+    /**
+     * Outstanding Receivables Report
+     */
+    public function outstandingReceivables(Request $request)
+    {
+        $sortBy = $request->input('sort_by', 'outstanding_amount'); // outstanding_amount, days_outstanding
+        $ageingFilter = $request->input('ageing_filter'); // 0-30, 31-60, 61-90, 90+
+
+        $invoices = SalesInvoice::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'customer')->get();
+
+        $receivablesData = [];
+        $today = \Carbon\Carbon::today();
+
+        foreach ($invoices as $invoice) {
+            $invoiceTotal = $invoice->items->sum('net_amount');
+            $invoiceBalance = $invoice->previous_balance + $invoiceTotal;
+
+            // Calculate amount received
+            $amountReceived = $receiptPayments
+                ->where('entity_code', $invoice->customer_code)
+                ->where('invoice_no', $invoice->invoice_no)
+                ->sum('receipt');
+
+            // Also check receipts without invoice_no (general receipts)
+            $generalReceipts = $receiptPayments
+                ->where('entity_code', $invoice->customer_code)
+                ->where('invoice_no', null)
+                ->sum('receipt');
+
+            // For simplicity, we'll calculate outstanding per invoice
+            // In a real scenario, you might need to track which receipts apply to which invoices
+            $outstandingAmount = $invoiceBalance - $amountReceived;
+
+            if ($outstandingAmount > 0) {
+                $invoiceDate = \Carbon\Carbon::parse($invoice->invoice_date);
+                $daysOutstanding = $today->diffInDays($invoiceDate);
+
+                // Ageing analysis
+                $ageing = '0-30';
+                if ($daysOutstanding > 90) {
+                    $ageing = '90+';
+                } elseif ($daysOutstanding > 60) {
+                    $ageing = '61-90';
+                } elseif ($daysOutstanding > 30) {
+                    $ageing = '31-60';
+                }
+
+                // Apply ageing filter
+                if ($ageingFilter && $ageing !== $ageingFilter) {
+                    continue;
+                }
+
+                $customer = Customer::find($invoice->customer_code);
+
+                $receivablesData[] = [
+                    'customer_code' => $invoice->customer_code,
+                    'customer_name' => $customer ? $customer->name : $invoice->customer_name,
+                    'invoice_no' => $invoice->invoice_no,
+                    'invoice_date' => $invoice->invoice_date,
+                    'invoice_amount' => $invoiceBalance,
+                    'amount_received' => $amountReceived,
+                    'outstanding_amount' => $outstandingAmount,
+                    'days_outstanding' => $daysOutstanding,
+                    'ageing' => $ageing,
+                ];
+            }
+        }
+
+        // Sort data
+        if ($sortBy === 'outstanding_amount') {
+            usort($receivablesData, function($a, $b) {
+                return $b['outstanding_amount'] <=> $a['outstanding_amount'];
+            });
+        } else {
+            usort($receivablesData, function($a, $b) {
+                return $b['days_outstanding'] <=> $a['days_outstanding'];
+            });
+        }
+
+        $totalOutstanding = array_sum(array_column($receivablesData, 'outstanding_amount'));
+
+        return view('tenant.reports.outstanding-receivables', compact(
+            'receivablesData',
+            'totalOutstanding',
+            'sortBy',
+            'ageingFilter'
+        ));
+    }
+
+    /**
+     * Outstanding Payables Report
+     */
+    public function outstandingPayables(Request $request)
+    {
+        $sortBy = $request->input('sort_by', 'outstanding_amount'); // outstanding_amount, days_outstanding
+        $ageingFilter = $request->input('ageing_filter'); // 0-30, 31-60, 61-90, 90+
+
+        $purchases = Purchase::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'supplier')->get();
+
+        $payablesData = [];
+        $today = \Carbon\Carbon::today();
+
+        foreach ($purchases as $purchase) {
+            $purchaseTotal = $purchase->items->sum('net_amount');
+            $purchaseBalance = $purchase->previous_balance + $purchaseTotal;
+
+            // Calculate amount paid
+            $amountPaid = $receiptPayments
+                ->where('supplier_code', $purchase->company_code)
+                ->where('invoice_no', $purchase->invoice_no)
+                ->sum('payment');
+
+            // Also check payments without invoice_no (general payments)
+            $generalPayments = $receiptPayments
+                ->where('supplier_code', $purchase->company_code)
+                ->where('invoice_no', null)
+                ->sum('payment');
+
+            $outstandingAmount = $purchaseBalance - $amountPaid;
+
+            if ($outstandingAmount > 0) {
+                $invoiceDate = \Carbon\Carbon::parse($purchase->invoice_date);
+                $daysOutstanding = $today->diffInDays($invoiceDate);
+
+                // Ageing analysis
+                $ageing = '0-30';
+                if ($daysOutstanding > 90) {
+                    $ageing = '90+';
+                } elseif ($daysOutstanding > 60) {
+                    $ageing = '61-90';
+                } elseif ($daysOutstanding > 30) {
+                    $ageing = '31-60';
+                }
+
+                // Apply ageing filter
+                if ($ageingFilter && $ageing !== $ageingFilter) {
+                    continue;
+                }
+
+                $company = Company::where('code', $purchase->company_code)->first();
+
+                $payablesData[] = [
+                    'supplier_code' => $purchase->company_code,
+                    'supplier_name' => $company ? $company->name : $purchase->company_name,
+                    'invoice_no' => $purchase->invoice_no,
+                    'invoice_date' => $purchase->invoice_date,
+                    'invoice_amount' => $purchaseBalance,
+                    'amount_paid' => $amountPaid,
+                    'outstanding_amount' => $outstandingAmount,
+                    'days_outstanding' => $daysOutstanding,
+                    'ageing' => $ageing,
+                ];
+            }
+        }
+
+        // Sort data
+        if ($sortBy === 'outstanding_amount') {
+            usort($payablesData, function($a, $b) {
+                return $b['outstanding_amount'] <=> $a['outstanding_amount'];
+            });
+        } else {
+            usort($payablesData, function($a, $b) {
+                return $b['days_outstanding'] <=> $a['days_outstanding'];
+            });
+        }
+
+        $totalOutstanding = array_sum(array_column($payablesData, 'outstanding_amount'));
+
+        return view('tenant.reports.outstanding-payables', compact(
+            'payablesData',
+            'totalOutstanding',
+            'sortBy',
+            'ageingFilter'
+        ));
+    }
+
+    /**
+     * Customer List Report
+     */
+    public function customerList(Request $request)
+    {
+        $areaId = $request->input('area_id');
+        $balanceFilter = $request->input('balance_filter'); // positive, negative, zero, all
+
+        $query = Customer::with('area');
+
+        if ($areaId) {
+            $query->where('area_id', $areaId);
+        }
+
+        $customers = $query->orderBy('name')->get();
+
+        // Get all invoices and receipts for each customer
+        $invoices = SalesInvoice::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'customer')->get();
+
+        $customerData = [];
+        foreach ($customers as $customer) {
+            // Calculate total purchases (sales to customer)
+            $customerInvoices = $invoices->where('customer_code', $customer->id);
+            $totalPurchases = 0;
+            $lastPurchaseDate = null;
+
+            foreach ($customerInvoices as $invoice) {
+                $invoiceTotal = $invoice->items->sum('net_amount');
+                $totalPurchases += $invoiceTotal;
+
+                if (!$lastPurchaseDate || $invoice->invoice_date > $lastPurchaseDate) {
+                    $lastPurchaseDate = $invoice->invoice_date;
+                }
+            }
+
+            // Calculate outstanding balance
+            $totalReceipts = $receiptPayments
+                ->where('entity_code', $customer->id)
+                ->sum('receipt');
+
+            // Calculate balance from invoices
+            $totalInvoiceAmount = 0;
+            foreach ($customerInvoices as $invoice) {
+                $totalInvoiceAmount += $invoice->previous_balance + $invoice->items->sum('net_amount');
+            }
+
+            $outstandingBalance = $totalInvoiceAmount - $totalReceipts;
+
+            // Apply balance filter
+            if ($balanceFilter === 'positive' && $outstandingBalance <= 0) {
+                continue;
+            } elseif ($balanceFilter === 'negative' && $outstandingBalance >= 0) {
+                continue;
+            } elseif ($balanceFilter === 'zero' && $outstandingBalance != 0) {
+                continue;
+            }
+
+            $customerData[] = [
+                'customer_code' => $customer->id,
+                'customer_name' => $customer->name,
+                'mobile' => $customer->mobile,
+                'address' => $customer->address,
+                'area' => $customer->area ? $customer->area->name : 'N/A',
+                'total_purchases' => $totalPurchases,
+                'last_purchase_date' => $lastPurchaseDate,
+                'outstanding_balance' => $outstandingBalance,
+            ];
+        }
+
+        $areas = \App\Models\Area::orderBy('name')->get();
+
+        return view('tenant.reports.customer-list', compact(
+            'customerData',
+            'areas',
+            'areaId',
+            'balanceFilter'
+        ));
+    }
+
+    /**
+     * Customer Purchase History
+     */
+    public function customerPurchaseHistory(Request $request)
+    {
+        $customerCode = $request->input('customer_code');
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+
+        if (!$customerCode) {
+            return redirect()->route('reports.index')->with('error', 'Please select a customer');
+        }
+
+        $query = SalesInvoice::where('customer_code', $customerCode)->with('items');
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        $invoices = $query->orderByDesc('invoice_date')->orderByDesc('id')->get();
+
+        // Get receipts for this customer
+        $receiptPayments = ReceiptPayment::where('payment_from', 'customer')
+            ->where('entity_code', $customerCode)
+            ->get();
+
+        $customer = Customer::find($customerCode);
+        $invoiceData = [];
+
+        foreach ($invoices as $invoice) {
+            $invoiceTotal = $invoice->items->sum('net_amount');
+            $invoiceBalance = $invoice->previous_balance + $invoiceTotal;
+
+            // Calculate payment received for this invoice
+            $paymentReceived = $receiptPayments
+                ->where('invoice_no', $invoice->invoice_no)
+                ->sum('receipt');
+
+            // Also add general receipts (without invoice_no)
+            $generalReceipts = $receiptPayments
+                ->where('invoice_no', null)
+                ->sum('receipt');
+
+            // For simplicity, we'll show payment received per invoice
+            // In a real scenario, you might need to track which receipts apply to which invoices
+            $outstandingBalance = $invoiceBalance - $paymentReceived;
+
+            $invoiceData[] = [
+                'invoice' => $invoice,
+                'invoice_total' => $invoiceTotal,
+                'invoice_balance' => $invoiceBalance,
+                'payment_received' => $paymentReceived,
+                'outstanding_balance' => $outstandingBalance,
+            ];
+        }
+
+        $customers = Customer::orderBy('name')->get();
+
+        return view('tenant.reports.customer-purchase-history', compact(
+            'invoiceData',
+            'customer',
+            'customers',
+            'customerCode',
+            'fromDate',
+            'toDate'
+        ));
+    }
+
+    /**
+     * Customer Balance Report
+     */
+    public function customerBalance(Request $request)
+    {
+        $balanceFilter = $request->input('balance_filter'); // positive, negative, zero, all
+
+        $customers = Customer::orderBy('name')->get();
+        $invoices = SalesInvoice::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'customer')->get();
+
+        $balanceData = [];
+        foreach ($customers as $customer) {
+            // Calculate opening balance (from first invoice's previous_balance)
+            $firstInvoice = $invoices->where('customer_code', $customer->id)->first();
+            $openingBalance = $firstInvoice ? $firstInvoice->previous_balance : 0;
+
+            // Calculate total sales
+            $customerInvoices = $invoices->where('customer_code', $customer->id);
+            $totalSales = 0;
+            foreach ($customerInvoices as $invoice) {
+                $totalSales += $invoice->items->sum('net_amount');
+            }
+
+            // Calculate total receipts
+            $totalReceipts = $receiptPayments
+                ->where('entity_code', $customer->id)
+                ->sum('receipt');
+
+            // Current balance = opening + sales - receipts
+            $currentBalance = $openingBalance + $totalSales - $totalReceipts;
+
+            // Apply balance filter
+            if ($balanceFilter === 'positive' && $currentBalance <= 0) {
+                continue;
+            } elseif ($balanceFilter === 'negative' && $currentBalance >= 0) {
+                continue;
+            } elseif ($balanceFilter === 'zero' && $currentBalance != 0) {
+                continue;
+            }
+
+            $balanceData[] = [
+                'customer_code' => $customer->id,
+                'customer_name' => $customer->name,
+                'opening_balance' => $openingBalance,
+                'total_sales' => $totalSales,
+                'total_receipts' => $totalReceipts,
+                'current_balance' => $currentBalance,
+            ];
+        }
+
+        return view('tenant.reports.customer-balance', compact(
+            'balanceData',
+            'balanceFilter'
+        ));
+    }
+
+    /**
+     * Supplier List Report
+     */
+    public function supplierList(Request $request)
+    {
+        $balanceFilter = $request->input('balance_filter'); // positive, negative, zero, all
+
+        $suppliers = Supplier::orderBy('name')->get();
+        $purchases = Purchase::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'supplier')->get();
+
+        $supplierData = [];
+        foreach ($suppliers as $supplier) {
+            // Get purchases for this supplier (via company)
+            // Note: This assumes supplier has a relationship with company
+            // You may need to adjust based on your actual data structure
+            $supplierPurchases = $purchases->filter(function($purchase) use ($supplier) {
+                // This is a simplified check - adjust based on your actual relationship
+                return true; // You'll need to implement proper supplier-company matching
+            });
+
+            $totalPurchases = 0;
+            $lastPurchaseDate = null;
+
+            foreach ($supplierPurchases as $purchase) {
+                $purchaseTotal = $purchase->items->sum('net_amount');
+                $totalPurchases += $purchaseTotal;
+
+                if (!$lastPurchaseDate || $purchase->invoice_date > $lastPurchaseDate) {
+                    $lastPurchaseDate = $purchase->invoice_date;
+                }
+            }
+
+            // Calculate outstanding balance
+            $totalPayments = $receiptPayments
+                ->where('supplier_code', $supplier->id)
+                ->sum('payment');
+
+            // Calculate balance from purchases
+            $totalPurchaseAmount = 0;
+            foreach ($supplierPurchases as $purchase) {
+                $totalPurchaseAmount += $purchase->previous_balance + $purchase->items->sum('net_amount');
+            }
+
+            $outstandingBalance = $totalPurchaseAmount - $totalPayments;
+
+            // Apply balance filter
+            if ($balanceFilter === 'positive' && $outstandingBalance <= 0) {
+                continue;
+            } elseif ($balanceFilter === 'negative' && $outstandingBalance >= 0) {
+                continue;
+            } elseif ($balanceFilter === 'zero' && $outstandingBalance != 0) {
+                continue;
+            }
+
+            $supplierData[] = [
+                'supplier_code' => $supplier->id,
+                'supplier_name' => $supplier->name,
+                'mobile' => $supplier->mobile,
+                'address' => $supplier->address,
+                'total_purchases' => $totalPurchases,
+                'last_purchase_date' => $lastPurchaseDate,
+                'outstanding_balance' => $outstandingBalance,
+            ];
+        }
+
+        return view('tenant.reports.supplier-list', compact(
+            'supplierData',
+            'balanceFilter'
+        ));
+    }
+
+    /**
+     * Supplier Purchase History
+     */
+    public function supplierPurchaseHistory(Request $request)
+    {
+        $supplierId = $request->input('supplier_id');
+        $fromDate = $request->input('from_date');
+        $toDate = $request->input('to_date');
+
+        if (!$supplierId) {
+            return redirect()->route('reports.index')->with('error', 'Please select a supplier');
+        }
+
+        // Get purchases for this supplier
+        // Note: Adjust based on your actual supplier-company relationship
+        $query = Purchase::with('items');
+
+        if ($fromDate) {
+            $query->where('invoice_date', '>=', $fromDate);
+        }
+
+        if ($toDate) {
+            $query->where('invoice_date', '<=', $toDate);
+        }
+
+        $purchases = $query->orderByDesc('invoice_date')->orderByDesc('id')->get();
+
+        // Get payments for this supplier
+        $receiptPayments = ReceiptPayment::where('payment_from', 'supplier')
+            ->where('supplier_code', $supplierId)
+            ->get();
+
+        $supplier = Supplier::find($supplierId);
+        $purchaseData = [];
+
+        foreach ($purchases as $purchase) {
+            $purchaseTotal = $purchase->items->sum('net_amount');
+            $purchaseBalance = $purchase->previous_balance + $purchaseTotal;
+
+            // Calculate payment made for this purchase
+            $paymentMade = $receiptPayments
+                ->where('invoice_no', $purchase->invoice_no)
+                ->sum('payment');
+
+            // Also add general payments (without invoice_no)
+            $generalPayments = $receiptPayments
+                ->where('invoice_no', null)
+                ->sum('payment');
+
+            $outstandingBalance = $purchaseBalance - $paymentMade;
+
+            $purchaseData[] = [
+                'purchase' => $purchase,
+                'purchase_total' => $purchaseTotal,
+                'purchase_balance' => $purchaseBalance,
+                'payment_made' => $paymentMade,
+                'outstanding_balance' => $outstandingBalance,
+            ];
+        }
+
+        $suppliers = Supplier::orderBy('name')->get();
+
+        return view('tenant.reports.supplier-purchase-history', compact(
+            'purchaseData',
+            'supplier',
+            'suppliers',
+            'supplierId',
+            'fromDate',
+            'toDate'
+        ));
+    }
+
+    /**
+     * Supplier Balance Report
+     */
+    public function supplierBalance(Request $request)
+    {
+        $balanceFilter = $request->input('balance_filter'); // positive, negative, zero, all
+
+        $suppliers = Supplier::orderBy('name')->get();
+        $purchases = Purchase::with('items')->get();
+        $receiptPayments = ReceiptPayment::where('payment_from', 'supplier')->get();
+
+        $balanceData = [];
+        foreach ($suppliers as $supplier) {
+            // Get purchases for this supplier
+            $supplierPurchases = $purchases->filter(function($purchase) use ($supplier) {
+                // Adjust based on your actual supplier-company relationship
+                return true;
+            });
+
+            // Calculate opening balance
+            $firstPurchase = $supplierPurchases->first();
+            $openingBalance = $firstPurchase ? $firstPurchase->previous_balance : 0;
+
+            // Calculate total purchases
+            $totalPurchases = 0;
+            foreach ($supplierPurchases as $purchase) {
+                $totalPurchases += $purchase->items->sum('net_amount');
+            }
+
+            // Calculate total payments
+            $totalPayments = $receiptPayments
+                ->where('supplier_code', $supplier->id)
+                ->sum('payment');
+
+            // Current balance = opening + purchases - payments
+            $currentBalance = $openingBalance + $totalPurchases - $totalPayments;
+
+            // Apply balance filter
+            if ($balanceFilter === 'positive' && $currentBalance <= 0) {
+                continue;
+            } elseif ($balanceFilter === 'negative' && $currentBalance >= 0) {
+                continue;
+            } elseif ($balanceFilter === 'zero' && $currentBalance != 0) {
+                continue;
+            }
+
+            $balanceData[] = [
+                'supplier_code' => $supplier->id,
+                'supplier_name' => $supplier->name,
+                'opening_balance' => $openingBalance,
+                'total_purchases' => $totalPurchases,
+                'total_payments' => $totalPayments,
+                'current_balance' => $currentBalance,
+            ];
+        }
+
+        return view('tenant.reports.supplier-balance', compact(
+            'balanceData',
+            'balanceFilter'
+        ));
+    }
+
+    /**
+     * Helper method to get group key for date grouping
+     */
+    private function getGroupKey($date, $groupBy)
+    {
+        switch ($groupBy) {
+            case 'daily':
+                return $date->format('Y-m-d');
+            case 'weekly':
+                return $date->format('Y-W');
+            case 'monthly':
+                return $date->format('Y-m');
+            case 'yearly':
+                return $date->format('Y');
+            default:
+                return '';
+        }
     }
 }
 
