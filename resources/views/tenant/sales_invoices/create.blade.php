@@ -432,6 +432,25 @@
                 });
         }
         
+        // Keyboard shortcut: Alt + i to open customer's previous invoices
+        document.addEventListener('keydown', function(e) {
+            // Check if Alt + i is pressed
+            if (e.altKey && e.key.toLowerCase() === 'i') {
+                e.preventDefault();
+                
+                const customerCode = document.getElementById('customer_code').value;
+                
+                if (!customerCode || customerCode.trim() === '') {
+                    alert('Please select a customer first');
+                    return;
+                }
+                
+                // Open customer invoices in a new window
+                const url = '{{ route_include_subdirectory("sales_invoices.customer_invoices", ["subdomain" => request()->route("subdomain")]) }}?customer_code=' + encodeURIComponent(customerCode);
+                window.open(url, 'CustomerInvoices', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            }
+        });
+
         // Clear error styling when fields are corrected
         document.addEventListener('DOMContentLoaded', function() {
             // Clear invoice date error on change

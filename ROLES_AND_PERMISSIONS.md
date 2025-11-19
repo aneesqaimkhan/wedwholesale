@@ -345,3 +345,5 @@ User::where('role', 'user')->get()->each(function ($user) {
 4. Update your code to use the new permission system
 5. Optionally remove the old `role` column after migration is complete
 
+
+

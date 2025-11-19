@@ -20,6 +20,34 @@ class SalesInvoiceController extends Controller
         return view('tenant.sales_invoices.index', compact('invoices'));
     }
 
+    /**
+     * Show previous invoices for a specific customer
+     */
+    public function customerInvoices(Request $request)
+    {
+        $customerCode = $request->input('customer_code');
+        
+        if (!$customerCode) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Customer code is required'
+            ], 400);
+        }
+
+        $invoices = SalesInvoice::where('customer_code', $customerCode)
+            ->orderByDesc('invoice_date')
+            ->orderByDesc('id')
+            ->with('items')
+            ->get();
+
+        $customer = Customer::where('id', $customerCode)->first();
+        $customerName = $customer ? $customer->name : 'Unknown Customer';
+        
+        $subdomain = $request->route('subdomain');
+
+        return view('tenant.sales_invoices.customer_invoices', compact('invoices', 'customerCode', 'customerName', 'subdomain'));
+    }
+
     public function create()
     {
         $customers = Customer::orderBy('name')->get(['id', 'name', 'address', 'mobile']);
