@@ -558,6 +558,11 @@
                     </a>
                 </div>
                 @endif
+                <div class="nav-item">
+                    <a href="{{ route_include_subdirectory('reports.index') }}" class="nav-link {{ request()->is('reports*') ? 'active' : '' }}" data-shortcut-key="r">
+                        <i>📊</i> Reports
+                    </a>
+                </div>
                 <div style="margin-top: 20px; padding: 15px 20px; border-top: 1px solid rgba(255,255,255,0.1);">
                     <div style="color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 10px;">
                         Welcome, {{ auth()->user()->name }}
